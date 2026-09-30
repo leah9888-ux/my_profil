@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="이수민 Portfolio — 서경대학교 스포츠앤테크놀로지학과" />
+  <title>PORTFOLIO — 이수민</title>
+  <style>
+    :root{
+      --bg:#f7f7f5;
+      --surface:#ffffff;
+      --text:#111111;
+      --muted:#6b6b6b;
+      --line:#deded9;
+      --accent:#111111;
+      --max:1240px;
+      --nav-h:72px;
+      --radius:18px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth;scroll-padding-top:calc(var(--nav-h) + 24px)}
+    body{
+      margin:0;
+      background:var(--bg);
+      color:var(--text);
+      font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","Helvetica Neue","Apple SD Gothic Neo","Noto Sans KR",Arial,sans-serif;
+      line-height:1.65;
+      letter-spacing:-.02em;
+      -webkit-font-smoothing:antialiased;
+    }
+    a{color:inherit;text-decoration:none}
+    button{font:inherit}
+    .nav{
+      position:fixed;top:0;left:0;right:0;z-index:1000;
+      height:var(--nav-h);
+      display:flex;align-items:center;
+      background:rgba(247,247,245,.88);
+      border-bottom:1px solid rgba(0,0,0,.08);
+      backdrop-filter:saturate(180%) blur(18px);
+      -webkit-backdrop-filter:saturate(180%) blur(18px);
+    }
+    .nav-inner{
+      width:min(var(--max),calc(100% - 48px));
+      margin:auto;display:flex;align-items:center;justify-content:space-between;gap:24px;
+    }
+    .brand{font-size:15px;font-weight:700;letter-spacing:.08em;white-space:nowrap}
+    .nav-links{display:flex;align-items:center;gap:4px}
+    .nav-links a{
+      padding:8px 11px;border-radius:999px;font-size:12px;color:#555;transition:.2s ease;
+    }
+    .nav-links a:hover,.nav-links a.active{background:#111;color:#fff}
+    .menu-toggle{
+      display:none;border:0;background:transparent;padding:8px;cursor:pointer;
+      font-size:22px;line-height:1;
+    }
+    main{padding-top:var(--nav-h)}
+    section{scroll-margin-top:calc(var(--nav-h) + 24px)}
+    .container{width:min(var(--max),calc(100% - 48px));margin:auto}
+    .hero{
+      min-height:calc(100vh - var(--nav-h));
+      display:grid;grid-template-columns:1.15fr .85fr;align-items:end;
+      padding:100px 0 80px;border-bottom:1px solid var(--line);
+    }
+    .eyebrow{
+      font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+      color:#777;margin-bottom:26px;
+    }
+    h1{
+      margin:0;font-size:clamp(64px,10vw,150px);line-height:.86;
+      letter-spacing:-.075em;font-weight:700;
+    }
+    .hero-copy{max-width:610px;margin-top:38px;font-size:clamp(19px,2vw,27px);line-height:1.45}
+    .hero-meta{
+      align-self:end;justify-self:end;max-width:390px;border-top:1px solid var(--text);
+      padding-top:18px;font-size:14px;color:#555;
+    }
+    .hero-meta strong{display:block;color:#111;font-size:17px;margin-bottom:12px}
+    .section{padding:120px 0;border-bottom:1px solid var(--line)}
+    .section-head{
+      display:grid;grid-template-columns:180px 1fr;gap:48px;margin-bottom:72px;
+    }
+    .section-num{font-size:12px;font-weight:700;letter-spacing:.12em;color:#888}
+    .section-title{margin:0;font-size:clamp(40px,5vw,72px);line-height:1;letter-spacing:-.055em}
+    .lead{max-width:760px;font-size:21px;color:#333;margin:0}
+    .profile-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+    .profile-card{
+      background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+      padding:32px;min-height:220px;
+    }
+    .profile-card h3{margin:0 0 22px;font-size:15px}
+    .profile-card ul{list-style:none;margin:0;padding:0}
+    .profile-card li{padding:8px 0;border-bottom:1px solid #ecece8;font-size:15px}
+    .profile-card li:last-child{border-bottom:0}
+    .strengths{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
+    .strength{background:var(--surface);padding:28px 22px;min-height:210px}
+    .strength .index{font-size:11px;color:#888;font-weight:700;letter-spacing:.1em}
+    .strength h3{font-size:17px;margin:18px 0 10px}
+    .strength p{font-size:14px;color:#666;margin:0}
+    .education{
+      display:grid;grid-template-columns:1fr 2fr;gap:60px;padding:42px 0;border-top:1px solid var(--line);
+    }
+    .education h3{font-size:28px;margin:0 0 8px}
+    .education .date{color:#777;font-size:14px}
+    .education ul{margin:0;padding-left:20px;color:#555}
+    .timeline{position:relative;margin-top:10px}
+    .timeline:before{
+      content:"";position:absolute;left:13px;top:0;bottom:0;width:1px;background:var(--line);
+    }
+    .experience-item{
+      position:relative;display:grid;grid-template-columns:220px 1fr;gap:60px;
+      padding:52px 0;border-top:1px solid var(--line);
+    }
+    .experience-item:first-child{border-top:0}
+    .experience-marker{
+      position:absolute;left:8px;top:58px;width:11px;height:11px;border-radius:50%;background:#111;
+    }
+    .experience-label{padding-left:42px}
+    .experience-label .org{font-size:13px;color:#777;margin-bottom:10px}
+    .experience-label h3{font-size:24px;line-height:1.2;margin:0}
+    .experience-label .role{font-size:13px;margin-top:8px;color:#555}
+    .experience-content h4{font-size:19px;margin:0 0 18px;line-height:1.4}
+    .experience-content h4 span{display:block;font-weight:400;color:#555}
+    .experience-content ul{margin:0;padding-left:20px;color:#555}
+    .tagline{
+      margin-top:24px;padding:18px 20px;background:#f1f1ed;border-radius:12px;
+      font-size:14px;color:#333;
+    }
+    .project-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+    .project{
+      background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+      padding:34px;min-height:330px;display:flex;flex-direction:column;
+    }
+    .project .org{font-size:12px;color:#777;margin-bottom:12px}
+    .project h3{font-size:27px;margin:0 0 10px}
+    .project h4{font-size:16px;margin:0 0 22px;color:#555;font-weight:500}
+    .project ul{margin:0;padding-left:19px;color:#555;font-size:14px}
+    .project .tagline{margin-top:auto}
+    .cert-layout{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+    .cert-card{
+      background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:32px;
+    }
+    .cert-card h3{margin:0 0 22px;font-size:18px}
+    .cert-list{list-style:none;padding:0;margin:0}
+    .cert-list li{padding:11px 0;border-bottom:1px solid #ecece8;font-size:15px}
+    .cert-list li:last-child{border-bottom:0}
+    .cert-detail{margin:18px 0 0;padding-left:18px;color:#666;font-size:13px}
+    .skills-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+    .skill{border-top:2px solid #111;padding-top:20px}
+    .skill h3{font-size:18px;margin:0 0 16px}
+    .skill ul{list-style:none;margin:0;padding:0;color:#555;font-size:14px}
+    .skill li{padding:5px 0}
+    .story{
+      max-width:900px;font-size:clamp(23px,3vw,40px);line-height:1.55;letter-spacing:-.04em;
+    }
+    .story p{margin:0 0 34px}
+    .story strong{font-weight:700;color:#111}
+    .contact{
+      min-height:70vh;display:flex;flex-direction:column;justify-content:center;
+      padding:120px 0;
+    }
+    .contact-title{font-size:clamp(55px,10vw,130px);line-height:.9;letter-spacing:-.07em;margin:0 0 60px}
+    .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;border-top:1px solid #111;padding-top:25px}
+    .contact-label{font-size:11px;text-transform:uppercase;letter-spacing:.12em;color:#777}
+    .contact-value{font-size:17px;margin-top:8px}
+    footer{padding:28px 0;color:#888;font-size:12px;border-top:1px solid var(--line)}
+    .reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
+    .reveal.visible{opacity:1;transform:none}
+    @media (max-width:1000px){
+      .nav-links{display:none;position:absolute;top:var(--nav-h);left:0;right:0;padding:12px 24px 18px;
+        background:rgba(247,247,245,.97);border-bottom:1px solid var(--line);flex-wrap:wrap}
+      .nav-links.open{display:flex}
+      .nav-links a{font-size:12px}
+      .menu-toggle{display:block}
+      .hero{grid-template-columns:1fr;gap:80px}
+      .hero-meta{justify-self:start}
+      .section-head{grid-template-columns:110px 1fr;gap:28px}
+      .strengths{grid-template-columns:repeat(2,1fr)}
+      .skills-grid{grid-template-columns:repeat(2,1fr)}
+      .experience-item{grid-template-columns:1fr;gap:26px}
+      .experience-label{padding-left:42px}
+    }
+    @media (max-width:680px){
+      :root{--nav-h:62px}
+      .container,.nav-inner{width:min(100% - 32px,var(--max))}
+      .hero{min-height:auto;padding:80px 0 64px}
+      h1{font-size:clamp(58px,20vw,100px)}
+      .hero-copy{font-size:19px}
+      .section{padding:78px 0}
+      .section-head{display:block;margin-bottom:46px}
+      .section-num{margin-bottom:20px}
+      .section-title{font-size:45px;margin-bottom:24px}
+      .lead{font-size:18px}
+      .profile-grid,.project-grid,.cert-layout,.contact-grid{grid-template-columns:1fr}
+      .strengths{grid-template-columns:1fr}
+      .skills-grid{grid-template-columns:1fr}
+      .profile-card,.project,.cert-card{padding:25px}
+      .experience-item{padding:40px 0}
+      .experience-marker{top:47px}
+      .experience-label h3{font-size:21px}
+      .education{grid-template-columns:1fr;gap:20px}
+      .contact-title{font-size:62px;margin-bottom:48px}
+      .contact{min-height:60vh}
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav" aria-label="주요 메뉴">
+    <div class="nav-inner">
+      <a class="brand" href="#profile">이수민 / PORTFOLIO</a>
+      <button class="menu-toggle" aria-label="메뉴 열기" aria-expanded="false">☰</button>
+      <div class="nav-links" id="navLinks">
+        <a href="#profile">01 PROFILE</a>
+        <a href="#about">02 ABOUT ME</a>
+        <a href="#education">03 EDUCATION</a>
+        <a href="#experience">04 EXPERIENCE</a>
+        <a href="#projects">05 PROJECT</a>
+        <a href="#certificate">07 CERTIFICATE</a>
+        <a href="#skills">08 SKILLS</a>
+        <a href="#story">09 MY STORY</a>
+        <a href="#contact">10 CONTACT</a>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <section id="profile" class="hero container reveal">
+      <div>
+        <div class="eyebrow">PORTFOLIO</div>
+        <h1>이수민</h1>
+        <p class="hero-copy">나무보단 숲을 보는 사람<br>스포츠를 직접 경험하고, 사람과 데이터를 이해하며<br>스포츠 제품과 콘텐츠를 새로운 관점에서 바라봅니다.</p>
+      </div>
+      <div class="hero-meta">
+        <strong>서경대학교 스포츠앤테크놀로지학과</strong>
+        <div><b>관심 분야</b><br>스포츠 머천다이징 · 스포츠 마케팅 · 스포츠 제품 기획 · 스포츠 콘텐츠 · 사용자 경험</div>
+        <br>
+        <div><b>희망 진로·직무</b><br>스포츠 머천다이징</div>
+        <br>
+        <div>스포츠에 대한 이해와 다양한 현장 경험을 바탕으로<br><b>소비자가 원하는 스포츠 제품과 경험을 기획하는 사람</b>을 목표로 합니다.</div>
+      </div>
+    </section>
+
+    <section id="about" class="section">
+      <div class="container">
+        <div class="section-head reveal">
+          <div class="section-num">02 / ABOUT ME</div>
+          <div>
+            <h2 class="section-title">스포츠를 경험하고,<br>분석하고, 기획합니다.</h2>
+            <p class="lead">저는 스포츠를 단순히 운동으로만 바라보지 않습니다.<br><br>운동 지도 경험을 통해 <b>사용자를 직접 이해하고</b>, 연구 활동을 통해 <b>데이터를 분석하며</b>, 공모전과 동아리 활동을 통해 <b>제품과 콘텐츠를 기획하고 디자인</b>해왔습니다.<br><br>또한 스포츠 제품 피팅과 국제 스포츠 대회 현장을 경험하며 스포츠 산업이 실제로 어떻게 운영되고 소비자에게 전달되는지 경험했습니다.<br><br>이러한 경험을 바탕으로 <b>사람이 원하는 스포츠 제품과 경험을 발견하고 기획하는 것</b>에 관심이 있습니다.</p>
+          </div>
+        </div>
+        <div class="profile-grid reveal">
+          <article class="profile-card">
+            <h3>관심 분야</h3>
+            <ul>
+              <li>스포츠 머천다이징</li><li>스포츠 마케팅</li><li>스포츠 제품 기획</li><li>스포츠 콘텐츠</li><li>사용자 경험</li>
+            </ul>
+          </article>
+          <article class="profile-card">
+            <h3>희망 진로·직무</h3>
+            <p><b>스포츠 머천다이징</b></p>
+            <p>스포츠에 대한 이해와 다양한 현장 경험을 바탕으로 <b>소비자가 원하는 스포츠 제품과 경험을 기획하는 사람</b>을 목표로 합니다.</p>
+          </article>
+        </div>
+        <div style="margin-top:64px" class="reveal">
+          <div class="section-num" style="margin-bottom:18px">MY STRENGTH</div>
+          <div class="strengths">
+            <article class="strength"><div class="index">01</div><h3>스포츠에 대한 이해</h3><p>스포츠 전공과 운동 지도 경험을 바탕으로 스포츠 현장과 소비자의 관점에서 생각할 수 있습니다.</p></article>
+            <article class="strength"><div class="index">02</div><h3>사용자 중심 사고</h3><p>회원의 신체 상태와 운동 데이터를 분석하고 개인에게 맞는 프로그램을 구성한 경험이 있습니다.</p></article>
+            <article class="strength"><div class="index">03</div><h3>기획과 디자인</h3><p>공모전과 동아리 활동을 통해 아이디어 기획부터 콘텐츠 및 디자인 제작까지 경험했습니다.</p></article>
+            <article class="strength"><div class="index">04</div><h3>소통과 교육</h3><p>다양한 연령대의 사람을 대상으로 운동 및 체력 관련 내용을 설명하고 실습을 진행한 경험이 있습니다.</p></article>
+            <article class="strength"><div class="index">05</div><h3>다양한 경험을 연결하는 시각</h3><p>운동·데이터·디자인·마케팅을 개별적인 경험으로 보지 않고 하나의 관점으로 연결합니다.</p></article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="education" class="section">
+      <div class="container">
+        <div class="section-head reveal">
+          <div class="section-num">03 / EDUCATION</div>
+          <div><h2 class="section-title">Education</h2></div>
+        </div>
+        <div class="education reveal">
+          <div>
+            <h3>서경대학교</h3>
+            <div class="date">2024 — 현재</div>
+          </div>
+          <div>
+            <h3>스포츠앤테크놀로지학과</h3>
+            <ul>
+              <li>스포츠 및 스포츠산업 관련 전공 학습</li>
+              <li>스포츠 기술 및 데이터 기반 프로젝트 참여</li>
+              <li>스포츠 마케팅 관련 프로젝트 및 스터디</li>
+              <li>공모전 및 팀 프로젝트 참여</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="experience" class="section">
+      <div class="container">
+        <div class="section-head reveal">
+          <div class="section-num">04 / EXPERIENCE</div>
+          <div><h2 class="section-title">Experience</h2></div>
+        </div>
+        <div class="timeline">
+          <article class="experience-item reveal">
+            <span class="experience-marker"></span>
+            <div class="experience-label"><div class="org">프로스펙스</div><h3>피팅모델 · 현재</h3></div>
+            <div class="experience-content"><h4>스포츠 제품을 직접 경험하며<span>사용자의 관점에서 제품을 바라보다.</span></h4><ul><li>프로스펙스 스포츠 제품 피팅 및 착용 테스트</li><li>제품 개발 과정에서 착용감 및 제품 테스트 참여</li><li>피팅 과정에서 제품 관련 내부 회의 및 의견 공유</li><li>실제 스포츠 제품을 직접 착용하며 제품의 기능과 착용감에 대한 이해</li></ul><div class="tagline"><b>담당 경험</b>　제품 피팅 · 착용 테스트 · 제품 의견 공유</div></div>
+          </article>
+          <article class="experience-item reveal">
+            <span class="experience-marker"></span>
+            <div class="experience-label"><div class="org">MOTY 연구</div><h3>한국체육대학교 대학원 학부연구생 · 연구 참여</h3></div>
+            <div class="experience-content"><h4>데이터를 기반으로 사용자를 이해하고<span>개인에게 필요한 운동을 분석하다.</span></h4><ul><li>예비시니어 대상 체력 향상 및 건강 증진을 위한 운동 지도</li><li>신체 및 운동 데이터를 기반으로 회원 상태 분석</li><li>회원별 운동 데이터 기록 및 체계적인 관리</li><li>개인의 신체 특성에 따른 운동 프로그램 구성</li></ul><div class="tagline"><b>담당 경험</b>　운동 지도 · 데이터 기록 · 사용자 분석 · 프로그램 구성</div></div>
+          </article>
+          <article class="experience-item reveal">
+            <span class="experience-marker"></span>
+            <div class="experience-label"><div class="org">서경대학교 구독대학교</div><h3>예비시니어 대상 운동 교육 · 발표 및 실습</h3></div>
+            <div class="experience-content"><h4>전문적인 운동 지식을<span>대상자의 눈높이에 맞춰 전달하다.</span></h4><ul><li>예비시니어 대상 체력평가 관련 내용 발표</li><li>체력평가 항목 및 측정 방법 설명</li><li>참여자들과 함께 체력평가 실습 진행</li><li>참여자의 이해도와 신체적 특성을 고려한 교육 진행</li><li>운동 및 건강 관련 내용을 쉽게 전달하고 소통</li></ul><div class="tagline"><b>담당 역할</b>　발표 · 교육 진행 · 체력평가 실습 · 참여자 소통<br><br><b>경험한 것</b>　전문적인 운동·체력 관련 내용을 대상자의 눈높이에 맞게 전달하고, 이론을 실제 실습으로 연결하는 경험</div></div>
+          </article>
+          <article class="experience-item reveal">
+            <span class="experience-marker"></span>
+            <div class="experience-label"><div class="org">바디코드 필라테스 &amp; PT 응암점</div><h3>필라테스·PT 강사 · 1년</h3></div>
+            <div class="experience-content"><h4>사용자의 상태를 파악하고<span>개인에게 맞는 운동 경험을 설계하다.</span></h4><ul><li>1:1 개인 레슨 중심의 필라테스 지도</li><li>회원별 체형 및 움직임 분석</li><li>개인의 신체 상태를 고려한 맞춤형 프로그램 구성</li><li>통증 완화 및 재활을 목적으로 한 운동 지도</li><li>회원의 상태에 따른 운동 강도 및 동작 조절</li></ul><div class="tagline"><b>담당 경험</b>　사용자 분석 · 맞춤형 프로그램 구성 · 고객 소통 · 운동 지도</div></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects" class="section">
+      <div class="container">
+        <div class="section-head reveal">
+          <div class="section-num">05 / PROJECT &amp; ACTIVITIES</div>
+          <div><h2 class="section-title">Project<br>&amp; Activities</h2></div>
+        </div>
+        <div class="project-grid">
+          <article class="project reveal"><div class="org">충청 유니버시아드</div><h3>굿즈 디자인 공모전 · 프로젝트 참여</h3><h4>스포츠 이벤트의 정체성을<br>하나의 상품으로 표현하다.</h4><ul><li>충청 유니버시아드의 대회 콘셉트와 지역 특색을 반영한 굿즈 기획</li><li>대회의 정체성을 표현할 수 있는 기념 굿즈 아이디어 도출</li><li>굿즈 디자인 방향 설정 및 디자인 참여</li><li>팀원 간 아이디어 공유 및 디자인 방향 협업</li></ul><div class="tagline"><b>담당 역할</b>　아이디어 기획 · 디자인 · 팀 협업<br><br><b>경험한 것</b>　스포츠 이벤트와 지역 콘텐츠를 상품으로 연결하는 과정 경험</div></article>
+          <article class="project reveal"><div class="org">캡스톤디자인 공모전</div><h3>스포츠 기술 기반 제품 기획</h3><h4>아이디어를 실제 제품의 형태로<br>구체화하다.</h4><ul><li>스포츠 기술 기반 제품 아이디어 도출</li><li>사용자의 필요와 제품 기능을 고려한 제품 기획</li><li>제품 디자인 및 개발 과정 참여</li><li>팀원과 출품을 위한 결과물 제작 및 발표</li></ul><div class="tagline"><b>담당 역할</b>　제품 아이디어 기획 · 디자인 · 결과물 제작 · 발표</div></article>
+          <article class="project reveal"><div class="org">리핏</div><h3>학과 동아리 · 부회장 및 운영진</h3><h4>스포츠 활동을 넘어<br>스포츠 산업과 조직 운영을 경험하다.</h4><ul><li>부회장 및 운영진으로서 동아리 운영</li><li>동아리 활동 및 프로그램 기획</li><li>공식 인스타그램 관리</li><li>활동 포스터 및 홍보 콘텐츠 디자인</li><li>스포츠 관련 공모전 및 팀 프로젝트 참여</li><li>자격증 취득 및 스포츠 관련 연수·교육 프로그램 참여</li><li>SPOEX 등 스포츠 산업 관련 행사 견학 및 내용 정리·발표</li><li>교내 체육대회 의무 지원 및 선수 테이핑</li><li>신입부원 대상 기초교육 및 무릎·어깨 등 이학적 검사 실습</li><li>스포츠 손상 및 의학적 주제 자료 조사 및 발표</li></ul></article>
+          <article class="project reveal"><div class="org">SPARK</div><h3>학과 동아리 · 운영진</h3><h4>스포츠 마케팅을 공부하고<br>직접 기획하고 실행하다.</h4><ul><li>동아리 활동 주제 및 프로그램 기획·운영</li><li>공식 인스타그램 관리</li><li>활동 포스터 및 홍보 콘텐츠 디자인</li><li>스포츠 산업 트렌드 분석 및 스터디</li><li>스포츠 마케팅 실무 용어 및 사례 기반 스터디</li><li>스포츠 마케팅 관련 공모전 참여</li><li>스포츠 관련 팀 프로젝트 수행</li></ul></article>
+          <article class="project reveal"><div class="org">LIV Golf Korea</div><h3>대회 안전요원</h3><h4>국제 스포츠 대회의 현장에서<br>관람객과 경기 운영을 경험하다.</h4><ul><li>LIV Golf Korea 대회 현장 안전요원 참여</li><li>경기장 및 관람객 동선 관리</li><li>현장 질서 유지</li><li>경기 진행에 따른 관람객 안전 관리</li><li>현장 상황에 따른 대응 및 운영 지원</li></ul><div class="tagline"><b>경험한 것</b>　국제 스포츠 대회의 현장 운영과 관람객 관리 경험</div></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="certificate" class="section">
+      <div class="container">
+        <div class="section-head reveal">
+          <div class="section-num">07 / CERTIFICATE</div>
+          <div><h2 class="section-title">Certificate</h2></div>
+        </div>
+        <div class="cert-layout">
+          <article class="cert-card reveal">
+            <h3>스포츠 관련 자격</h3>
+            <ul class="cert-list">
+              <li>골프 데이터 분석 자격증</li>
+              <li>스키 심판 3급 ㅣ 대한스키협회</li>
+              <li>스키 레벨 1ㅣ대한스키협회</li>
+              <li>필라테스 지도자 자격증</li>
+              <li>키네시오 테이핑ㅣKTCS</li>
+            </ul>
+            <div class="cert-detail">
+              <b>국제재활필라테스협회</b><br>
+              - 기능해부학 및 운동기능학<br>
+              - 체형 분석 및 움직임 평가<br>
+              - 이학적 평가<br>
+              - 통증 및 재활 관련 운동 지도<br>
+              - 머리·목 / 어깨·등 / 허리·골반 / 무릎·발목 통증 재활기법<br>
+              - 골반교정 기초 및 체형교정 프로그램<br>
+              - 척추측만증·OX다리·거북목·굽은등 관련 체형교정<br>
+              - 고객 유형별 상담 기법<br>
+              - 1:1·2:1·그룹 운동 목적별 프로그램 구성
+            </div>
+          </article>
+          <article class="cert-card reveal">
+            <h3>기타 자격</h3>
+            <ul class="cert-list">
+              <li>정보기술자격 ITQㅣ한국생산성본부</li>
+              <li>그래픽기술자격 GTQ 2급 ㅣ한국생산성본부</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills" class="section">
+      <div class="container">
+        <div class="section-head reveal">
+          <div class="section-num">08 / SKILLS</div>
+          <div><h2 class="section-title">Skills</h2></div>
+        </div>
+        <div class="skills-grid">
+          <article class="skill reveal"><h3>스포츠</h3><ul><li>스포츠 산업 및 스포츠 현장 이해</li><li>운동 및 스포츠 지도</li><li>스포츠 이벤트 현장 운영</li><li>스포츠 제품 경험 및 이해</li></ul></article>
+          <article class="skill reveal"><h3>기획</h3><ul><li>스포츠 프로젝트 기획</li><li>스포츠 굿즈 아이디어 기획</li><li>프로그램 기획 및 운영</li><li>사용자 중심 아이디어 도출</li></ul></article>
+          <article class="skill reveal"><h3>데이터·연구</h3><ul><li>신체 및 운동 데이터 분석</li><li>사용자 상태 분석</li><li>자료 조사 및 리서치</li><li>데이터 기반 문제 해결</li></ul></article>
+          <article class="skill reveal"><h3>디자인·콘텐츠</h3><ul><li>SNS 콘텐츠 기획</li><li>포스터 및 홍보물 제작</li><li>영상 콘텐츠 기획</li><li>스포츠 콘텐츠 제작</li><li>AI 도구 활용</li><li>ITQ · GTQ 활용</li></ul></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="story" class="section">
+      <div class="container">
+        <div class="section-head reveal">
+          <div class="section-num">09 / MY STORY</div>
+          <div><h2 class="section-title">My Story</h2></div>
+        </div>
+        <div class="story reveal">
+          <p><strong>운동을 가르치는 사람에서<br>스포츠를 기획하는 사람으로</strong></p>
+          <p>처음에는 스포츠를 직접 경험하고 가르치는 것에서 시작했습니다.</p>
+          <p>필라테스 강사와 연구 활동을 통해 사람의 몸과 행동을 관찰하고 데이터를 기록하는 경험을 쌓았습니다.</p>
+          <p>또한 서경대학교 구독대학교에서 예비시니어를 대상으로 체력평가를 발표하고 직접 실습을 진행하면서, 전문적인 내용을 사람의 눈높이에 맞춰 전달하는 경험도 쌓았습니다.</p>
+          <p>이후 스포츠 동아리와 공모전 활동을 통해 스포츠를 제품과 콘텐츠, 마케팅의 관점에서 바라보기 시작했습니다.</p>
+          <p>충청 유니버시아드 굿즈 디자인 공모전과 캡스톤디자인을 통해 스포츠와 제품을 연결하는 경험을 했고,</p>
+          <p>SPARK 활동을 통해 스포츠 마케팅과 산업 트렌드를 공부했으며,</p>
+          <p>프로스펙스 피팅모델 활동을 통해 스포츠 제품이 실제 사용자에게 어떻게 경험되는지 직접 경험하고 있습니다.</p>
+          <p>이러한 경험을 바탕으로 앞으로는</p>
+          <p><strong>스포츠를 잘 아는 사람을 넘어,<br>사람들이 원하는 스포츠 제품과 경험을 기획하는 사람</strong></p>
+          <p>이 되고자 합니다.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="contact container reveal">
+      <div class="eyebrow">10 / CONTACT</div>
+      <h2 class="contact-title">LET'S<br>CONNECT</h2>
+      <div class="contact-grid">
+        <div>
+          <div class="contact-label">Name</div>
+          <div class="contact-value">이수민</div>
+        </div>
+        <div>
+          <div class="contact-label">Education</div>
+          <div class="contact-value">서경대학교 스포츠앤테크놀로지학과</div>
+        </div>
+        <div>
+          <div class="contact-label">관심 분야</div>
+          <div class="contact-value">스포츠 머천다이징 · 스포츠 마케팅 · 스포츠 제품 기획</div>
+        </div>
+        <div>
+          <div class="contact-label">Email</div>
+          <div class="contact-value"><a href="mailto:leah720823-@naver.com">leah720823-@naver.com</a></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">PORTFOLIO · 이수민</div>
+  </footer>
+
+  <script>
+    const navLinks = document.querySelectorAll('.nav-links a');
+    const sections = document.querySelectorAll('main section[id]');
+    const nav = document.querySelector('.nav');
+    const menuToggle = document.querySelector('.menu-toggle');
+    const navLinksWrap = document.querySelector('.nav-links');
+
+    navLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        navLinksWrap.classList.remove('open');
+        menuToggle.setAttribute('aria-expanded','false');
+      });
+    });
+
+    menuToggle.addEventListener('click', () => {
+      const open = navLinksWrap.classList.toggle('open');
+      menuToggle.setAttribute('aria-expanded', String(open));
+    });
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting){
+          navLinks.forEach(link => {
+            link.classList.toggle('active', link.getAttribute('href') === '#' + entry.target.id);
+          });
+        }
+      });
+    }, { rootMargin: '-35% 0px -55% 0px', threshold: 0 });
+
+    sections.forEach(section => observer.observe(section));
+
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting){
+          entry.target.classList.add('visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: .08 });
+
+    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+  </script>
+</body>
+</html>
