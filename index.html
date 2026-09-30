@@ -70,8 +70,25 @@
       letter-spacing:-.075em;font-weight:700;
     }
     .hero-copy{max-width:610px;margin-top:38px;font-size:clamp(19px,2vw,27px);line-height:1.45}
+    .hero-visual{
+      align-self:end;
+      display:flex;
+      justify-content:flex-end;
+      align-items:flex-end;
+      gap:28px;
+    }
+    .profile-photo{
+      width:min(360px, 32vw);
+      aspect-ratio:4/5;
+      object-fit:cover;
+      display:block;
+      border-radius:24px;
+      border:1px solid #d9d9d4;
+      background:#ecece8;
+      box-shadow:0 20px 50px rgba(0,0,0,.08);
+    }
     .hero-meta{
-      align-self:end;justify-self:end;max-width:390px;border-top:1px solid var(--text);
+      align-self:end;justify-self:end;max-width:330px;border-top:1px solid var(--text);
       padding-top:18px;font-size:14px;color:#555;
     }
     .hero-meta strong{display:block;color:#111;font-size:17px;margin-bottom:12px}
@@ -171,7 +188,9 @@
       .nav-links.open{display:flex}
       .nav-links a{font-size:12px}
       .menu-toggle{display:block}
-      .hero{grid-template-columns:1fr;gap:80px}
+      .hero{grid-template-columns:1fr;gap:60px}
+      .hero-visual{justify-content:flex-start;align-items:flex-start}
+      .profile-photo{width:min(320px,42vw)}
       .hero-meta{justify-self:start}
       .section-head{grid-template-columns:110px 1fr;gap:28px}
       .strengths{grid-template-columns:repeat(2,1fr)}
@@ -183,6 +202,9 @@
       :root{--nav-h:62px}
       .container,.nav-inner{width:min(100% - 32px,var(--max))}
       .hero{min-height:auto;padding:80px 0 64px}
+      .hero-visual{display:block}
+      .profile-photo{width:min(100%,360px);margin-bottom:34px;border-radius:20px}
+      .hero-meta{max-width:none}
       h1{font-size:clamp(58px,20vw,100px)}
       .hero-copy{font-size:19px}
       .section{padding:78px 0}
@@ -229,13 +251,24 @@
         <h1>이수민</h1>
         <p class="hero-copy">나무보단 숲을 보는 사람<br>스포츠를 직접 경험하고, 사람과 데이터를 이해하며<br>스포츠 제품과 콘텐츠를 새로운 관점에서 바라봅니다.</p>
       </div>
-      <div class="hero-meta">
-        <strong>서경대학교 스포츠앤테크놀로지학과</strong>
+      <div class="hero-visual">
+        <img
+          class="profile-photo"
+          src="./IMG_2525.JPG"
+          alt="이수민 프로필 사진"
+          width="720"
+          height="900"
+          loading="eager"
+          decoding="async"
+        />
+        <div class="hero-meta">
+          <strong>서경대학교 스포츠앤테크놀로지학과</strong>
         <div><b>관심 분야</b><br>스포츠 머천다이징 · 스포츠 마케팅 · 스포츠 제품 기획 · 스포츠 콘텐츠 · 사용자 경험</div>
         <br>
         <div><b>희망 진로·직무</b><br>스포츠 머천다이징</div>
         <br>
-        <div>스포츠에 대한 이해와 다양한 현장 경험을 바탕으로<br><b>소비자가 원하는 스포츠 제품과 경험을 기획하는 사람</b>을 목표로 합니다.</div>
+          <div>스포츠에 대한 이해와 다양한 현장 경험을 바탕으로<br><b>소비자가 원하는 스포츠 제품과 경험을 기획하는 사람</b>을 목표로 합니다.</div>
+        </div>
       </div>
     </section>
 
@@ -451,6 +484,17 @@
   </footer>
 
   <script>
+    // GitHub Pages is case-sensitive.
+    // Keep IMG_2525.JPG in the same repository folder as index.html.
+    const profilePhoto = document.querySelector('.profile-photo');
+    if (profilePhoto) {
+      profilePhoto.addEventListener('error', () => {
+        profilePhoto.alt = '프로필 사진을 불러오지 못했습니다. IMG_2525.JPG 파일명을 확인해주세요.';
+        profilePhoto.style.objectFit = 'contain';
+        profilePhoto.style.padding = '28px';
+      });
+    }
+
     const navLinks = document.querySelectorAll('.nav-links a');
     const sections = document.querySelectorAll('main section[id]');
     const nav = document.querySelector('.nav');
@@ -492,5 +536,3 @@
 
     document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
   </script>
-</body>
-</html>
