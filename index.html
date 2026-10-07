@@ -3,387 +3,717 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Developer Career Portfolio</title>
+  <title>이수민 | Portfolio</title>
   <style>
-    /* 기본 리셋 및 글로벌 스타일 */
+    :root {
+      --bg-color: #fbfbfd;
+      --card-bg: #ffffff;
+      --text-primary: #1d1d1f;
+      --text-secondary: #86868b;
+      --accent: #0066cc;
+      --border-color: #e5e5e5;
+      --max-width: 1080px;
+      --font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
+    }
+
     * {
-      box-sizing: border-box;
       margin: 0;
       padding: 0;
+      box-sizing: border-box;
+      word-break: keep-all;
+    }
+
+    html {
+      scroll-behavior: smooth;
     }
 
     body {
-      font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
+      font-family: var(--font-family);
+      background-color: var(--bg-color);
+      color: var(--text-primary);
       line-height: 1.6;
-      color: #333333;
-      background-color: #f8f9fa;
-      padding: 40px 20px;
+      -webkit-font-smoothing: antialiased;
     }
 
-    .container {
-      max-width: 900px;
+    /* Fixed Navigation Bar */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 60px;
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border-color);
+      z-index: 1000;
+      display: flex;
+      justify-content: center;
+    }
+
+    nav {
+      width: 100%;
+      max-width: var(--max-width);
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 24px;
+    }
+
+    .nav-logo {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      text-decoration: none;
+      letter-spacing: -0.5px;
+    }
+
+    .nav-menu {
+      display: flex;
+      gap: 24px;
+      list-style: none;
+    }
+
+    .nav-menu a {
+      font-size: 0.88rem;
+      color: var(--text-secondary);
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    .nav-menu a:hover {
+      color: var(--text-primary);
+    }
+
+    /* Layout & Sections */
+    section {
+      padding: 120px 24px 80px;
+      max-width: var(--max-width);
       margin: 0 auto;
-      background: #ffffff;
-      padding: 48px;
-      border-radius: 16px;
-      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+      border-bottom: 1px solid var(--border-color);
     }
 
-    /* 1. 상단 프로필 이미지 영역 */
-    .profile-header {
+    section:last-of-type {
+      border-bottom: none;
+    }
+
+    .hero-section {
+      min-height: 80vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    h1.main-title {
+      font-size: 3.5rem;
+      font-weight: 700;
+      letter-spacing: -1.5px;
+      margin-bottom: 24px;
+      color: var(--text-primary);
+    }
+
+    h2.section-title {
+      font-size: 2.2rem;
+      font-weight: 700;
+      letter-spacing: -1px;
+      margin-bottom: 12px;
+      text-transform: uppercase;
+    }
+
+    .subtitle {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 12px;
+    }
+
+    .muted-text {
+      font-size: 1.1rem;
+      color: var(--text-secondary);
+      font-weight: 400;
+      line-height: 1.7;
+    }
+
+    /* About Section */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: center;
+      margin-top: 40px;
+    }
+
+    .about-left {
       display: flex;
       flex-direction: column;
       align-items: center;
       text-align: center;
-      margin-bottom: 40px;
     }
 
-    .profile-img-box {
-      width: 180px;
-      height: 180px;
-      border-radius: 50%;
+    /* 프로필 이미지 페이드 교체 박스 */
+    .about-img-wrapper {
+      width: 100%;
+      max-width: 320px;
+      height: 420px;
+      border-radius: 12px;
       overflow: hidden;
-      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
-      border: 4px solid #ffffff;
-      background-color: #e2e8f0; /* 이미지 없을 때 깔끔한 기본 배경 */
-      margin-bottom: 20px;
+      margin: 20px 0;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+      background-color: #f2f2f7;
     }
 
-    .profile-img-box img {
+    .about-img-wrapper img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      transition: opacity 0.5s ease-in-out;
+      transition: opacity 0.6s ease-in-out;
     }
 
-    .profile-name {
-      font-size: 2rem;
-      font-weight: 700;
-      color: #1e293b;
-      margin-bottom: 6px;
+    .info-list {
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+      line-height: 1.8;
     }
 
-    .profile-title {
-      font-size: 1.1rem;
-      color: #3b82f6;
-      font-weight: 600;
-      margin-bottom: 12px;
-    }
-
-    .profile-contact {
-      display: flex;
-      gap: 16px;
-      font-size: 0.9rem;
-      color: #64748b;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-
-    /* Section 공통 스타일 */
-    section {
-      margin-bottom: 40px;
-    }
-
-    h2 {
-      font-size: 1.4rem;
-      font-weight: 700;
-      margin-bottom: 20px;
-      color: #1e293b;
-      border-bottom: 2px solid #f1f5f9;
-      padding-bottom: 10px;
-    }
-
-    /* About Me */
-    .about-text {
-      font-size: 1rem;
-      color: #475569;
-      word-break: keep-all;
-    }
-
-    /* Skills */
-    .skills-list {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-    }
-
-    .skill-tag {
-      background-color: #f1f5f9;
-      color: #334155;
-      padding: 6px 14px;
-      border-radius: 20px;
-      font-size: 0.88rem;
-      font-weight: 500;
-    }
-
-    /* 2. Career Timeline 섹션 (강조 배경색 적용) */
-    .career-timeline-section {
-      background-color: #f0f4f9; /* Career Timeline 강조 배경색 */
+    /* Content Box UI */
+    .content-box {
+      background: var(--card-bg);
       padding: 32px;
-      border-radius: 14px;
-      border-left: 5px solid #3b82f6;
-      box-shadow: 0 2px 12px rgba(59, 130, 246, 0.06);
+      border-radius: 16px;
+      border: 1px solid var(--border-color);
+      margin-top: 32px;
     }
 
-    .career-timeline-section h2 {
-      color: #1e3a8a;
-      border-bottom-color: #cbd5e1;
+    ul.clean-list {
+      list-style: none;
+      margin-top: 16px;
+    }
+
+    ul.clean-list li {
+      position: relative;
+      padding-left: 20px;
+      margin-bottom: 10px;
+      font-size: 1rem;
+      color: var(--text-primary);
+    }
+
+    ul.clean-list li::before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      color: var(--text-secondary);
+    }
+
+    /* ★ Career Timeline Section 강조 배경 스타일 ★ */
+    #career {
+      background-color: #f0f4f8; /* 다른 영역과 차별화되는 강조 배경색 */
+      border-radius: 24px;
+      margin-top: 40px;
+      margin-bottom: 40px;
+      padding: 60px 40px;
+      border: 1px solid #d0dbe5;
     }
 
     .timeline {
       position: relative;
+      margin-top: 40px;
       padding-left: 20px;
-      border-left: 2px solid #cbd5e1;
-      margin-top: 10px;
+      border-left: 2px solid #b0c4de;
     }
 
     .timeline-item {
       position: relative;
-      margin-bottom: 28px;
-      padding-left: 16px;
-    }
-
-    .timeline-item:last-child {
-      margin-bottom: 0;
+      margin-bottom: 40px;
+      padding-left: 24px;
     }
 
     .timeline-item::before {
-      content: '';
+      content: "";
       position: absolute;
-      left: -28px;
+      left: -27px;
       top: 6px;
       width: 12px;
       height: 12px;
       border-radius: 50%;
-      background-color: #3b82f6;
-      border: 2px solid #ffffff;
+      background: var(--accent);
     }
 
     .timeline-date {
-      font-size: 0.85rem;
-      color: #64748b;
+      font-size: 0.9rem;
       font-weight: 600;
+      color: var(--text-secondary);
       margin-bottom: 4px;
     }
 
     .timeline-title {
-      font-size: 1.1rem;
+      font-size: 1.2rem;
       font-weight: 700;
-      color: #0f172a;
-      margin-bottom: 6px;
+      color: var(--text-primary);
+      margin-bottom: 12px;
     }
 
-    .timeline-desc {
-      font-size: 0.95rem;
-      color: #334155;
+    .timeline-img {
+      max-width: 240px;
+      border-radius: 8px;
+      margin-top: 12px;
+      border: 1px solid var(--border-color);
+      display: block;
     }
 
-    /* Projects */
+    /* Certificates Grid */
+    .cert-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-top: 32px;
+    }
+
+    .cert-card {
+      background: var(--card-bg);
+      padding: 32px;
+      border-radius: 16px;
+      border: 1px solid var(--border-color);
+    }
+
+    .cert-card h3 {
+      font-size: 1.3rem;
+      margin-bottom: 20px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .cert-sublist {
+      margin-left: 16px;
+      margin-top: 8px;
+      margin-bottom: 12px;
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+    }
+
+    /* Project Cards */
     .project-card {
-      background: #fafafa;
-      border: 1px solid #e2e8f0;
-      border-radius: 10px;
-      padding: 20px;
-      margin-bottom: 16px;
+      background: var(--card-bg);
+      border-radius: 16px;
+      border: 1px solid var(--border-color);
+      overflow: hidden;
+      margin-top: 32px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
     }
 
-    .project-card:last-child {
-      margin-bottom: 0;
+    .project-card.no-img {
+      grid-template-columns: 1fr;
     }
 
-    .project-title {
-      font-size: 1.1rem;
-      font-weight: 700;
-      color: #0f172a;
-      margin-bottom: 6px;
-    }
-
-    .project-desc {
-      font-size: 0.95rem;
-      color: #475569;
-    }
-
-    /* Education */
-    .edu-item {
+    .project-img-container {
+      background: #f2f2f7;
       display: flex;
-      justify-content: space-between;
       align-items: center;
+      justify-content: center;
+      padding: 24px;
     }
 
-    .edu-school {
-      font-weight: 600;
-      color: #1e293b;
+    .project-img-container img {
+      max-width: 100%;
+      max-height: 360px;
+      object-fit: contain;
+      border-radius: 8px;
     }
 
-    .edu-major {
-      color: #64748b;
-      font-size: 0.9rem;
+    .project-content {
+      padding: 40px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
     }
 
-    .edu-date {
+    .project-role {
+      display: inline-block;
       font-size: 0.85rem;
-      color: #94a3b8;
+      font-weight: 600;
+      color: var(--text-secondary);
+      margin-bottom: 12px;
+      background: #f2f2f7;
+      padding: 4px 12px;
+      border-radius: 20px;
+      width: fit-content;
     }
 
-    /* 3. 설정 변경 팁 영역 */
-    .config-tip-box {
-      margin-top: 50px;
-      background-color: #fffbe0;
-      border: 1px solid #fde047;
-      border-radius: 10px;
-      padding: 20px 24px;
+    .project-exp {
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--accent);
+      margin-bottom: 20px;
     }
 
-    .config-tip-box h3 {
-      font-size: 1rem;
-      color: #854d0e;
-      margin-bottom: 8px;
+    /* Story Section */
+    .story-content {
+      font-size: 1.1rem;
+      line-height: 1.9;
+      color: var(--text-primary);
+      white-space: pre-line;
+      background: var(--card-bg);
+      padding: 40px;
+      border-radius: 16px;
+      border: 1px solid var(--border-color);
+      margin-top: 32px;
     }
 
-    .config-tip-box ul {
-      list-style: none;
+    /* Contact Section */
+    .contact-card {
+      background: var(--card-bg);
+      padding: 40px;
+      border-radius: 16px;
+      border: 1px solid var(--border-color);
+      margin-top: 32px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
     }
 
-    .config-tip-box li {
+    .contact-item h4 {
       font-size: 0.9rem;
-      color: #713f12;
-      margin-bottom: 6px;
+      color: var(--text-secondary);
+      margin-bottom: 4px;
+      text-transform: uppercase;
     }
 
-    .config-tip-box code {
-      background-color: rgba(250, 204, 21, 0.3);
-      padding: 2px 6px;
-      border-radius: 4px;
-      font-family: monospace;
-      font-weight: bold;
+    .contact-item p {
+      font-size: 1.1rem;
+      font-weight: 600;
+    }
+
+    footer {
+      text-align: center;
+      padding: 40px 24px;
+      color: var(--text-secondary);
+      font-size: 0.85rem;
+      border-top: 1px solid var(--border-color);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      h1.main-title { font-size: 2.5rem; }
+      h2.section-title { font-size: 1.8rem; }
+      .about-grid, .cert-grid, .project-card, .contact-card {
+        grid-template-columns: 1fr;
+      }
+      .project-card { display: flex; flex-direction: column; }
+      .nav-menu { display: none; }
+      section { padding-top: 100px; }
+      #career { padding: 40px 20px; }
     }
   </style>
 </head>
 <body>
 
-  <div class="container">
+  <!-- Fixed Navigation Bar -->
+  <header>
+    <nav>
+      <a href="#hero" class="nav-logo">LEESUMIN</a>
+      <ul class="nav-menu">
+        <li><a href="#about">About</a></li>
+        <li><a href="#education">Education</a></li>
+        <li><a href="#career">Career</a></li>
+        <li><a href="#certificates">Certificates</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#story">Story</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
 
-    <!-- 프로필 헤더 (단일 img 태그로 겹침 문제 완전 해결) -->
-    <header class="profile-header">
-      <div class="profile-img-box">
-        <img id="profileImage" src="profile.jpg" alt="Profile Photo">
-      </div>
-      <h1 class="profile-name">홍길동</h1>
-      <p class="profile-title">Frontend Developer</p>
-      <div class="profile-contact">
-        <span>📧 email@example.com</span>
-        <span>📱 010-1234-5678</span>
-        <span>🌐 github.com/username</span>
-      </div>
-    </header>
+  <!-- Page 1: Hero -->
+  <section id="hero" class="hero-section">
+    <h1 class="main-title">portfolio</h1>
+    <div class="subtitle">나무보단 숲을 보는 사람, 이수민입니다.</div>
+    <div class="muted-text">스포츠를 직접 경험하고, 스포츠제품과 콘텐츠를 새로운 관점에서 바라봅니다.</div>
+  </section>
 
-    <!-- About Me -->
-    <section>
-      <h2>About Me</h2>
-      <p class="about-text">
-        사용자 경험을 최우선으로 생각하는 프론트엔드 개발자입니다. 매끄러운 웹 성능 구현과 직관적인 인터페이스 설계를 즐기며, 새로운 기술을 배우고 팀원들과 공유하는 데 열정을 가지고 있습니다.
-      </p>
-    </section>
-
-    <!-- Skills -->
-    <section>
-      <h2>Skills</h2>
-      <div class="skills-list">
-        <span class="skill-tag">HTML5 / CSS3</span>
-        <span class="skill-tag">JavaScript (ES6+)</span>
-        <span class="skill-tag">React</span>
-        <span class="skill-tag">TypeScript</span>
-        <span class="skill-tag">Next.js</span>
-        <span class="skill-tag">Git / GitHub</span>
-      </div>
-    </section>
-
-    <!-- Career Timeline (강조 배경색 적용) -->
-    <section class="career-timeline-section">
-      <h2>Career Timeline</h2>
-      <div class="timeline">
-        <div class="timeline-item">
-          <div class="timeline-date">2024 - PRESENT</div>
-          <div class="timeline-title">Senior Project Lead — ABC Tech</div>
-          <div class="timeline-desc">주요 프로젝트 총괄 및 글로벌 서비스 프론트엔드 아키텍처 설계 담당.</div>
+  <!-- Page 2: About Me -->
+  <section id="about">
+    <h2 class="section-title">about me</h2>
+    <div class="about-grid">
+      <div class="about-left">
+        <h3 class="subtitle">이수민 lee sumin</h3>
+        
+        <!-- profile.jpg 와 career1.png 가 교체되는 슬라이더 박스 -->
+        <div class="about-img-wrapper">
+          <img id="rotatingProfileImg" src="profile.jpg" alt="이수민 프로필 사진">
         </div>
 
-        <div class="timeline-item">
-          <div class="timeline-date">2022 - 2024</div>
-          <div class="timeline-title">Frontend Developer — XYZ Corp</div>
-          <div class="timeline-desc">웹 애플리케이션 프론트엔드 개발, 반응형 UI 구축 및 랜딩 페이지 성능 최적화.</div>
-        </div>
-
-        <div class="timeline-item">
-          <div class="timeline-date">2020 - 2022</div>
-          <div class="timeline-title">Junior Web Developer — Startup Inc</div>
-          <div class="timeline-desc">고객 맞춤형 웹 서비스 구축 및 유지보수, 신규 기능 개발 참여.</div>
+        <div class="info-list">
+          <p>전화번호: 010.2692.2014</p>
+          <p>이메일: leah720823-@naver.com</p>
+          <p>생년월일: 2004.08.23</p>
         </div>
       </div>
-    </section>
-
-    <!-- Projects -->
-    <section>
-      <h2>Projects</h2>
-      <div class="project-card">
-        <div class="project-title">포트폴리오 웹사이트 제작</div>
-        <div class="project-desc">개인 이력 및 프로젝트를 한눈에 볼 수 있는 인터랙티브 반응형 포트폴리오 사이트.</div>
+      <div class="about-right">
+        <div class="subtitle">스포츠를 경험하고, 분석하고, 기획합니다.</div>
+        <p class="muted-text">
+          저는 스포츠를 운동으로만 바라보지 않습니다. 운동지도 경험을 통해 사용자를 직접 이해하고, 연구활동을 통해 데이터를 분석하며, 공모전과 동아리 활동을 통해 제품과 콘텐츠를 기획하고 디자인 해왔습니다. 이러한 경험을 바탕으로 사람이 원하는 스포츠 제품과 경험을 발견하고 기획하는 것에 관심이 있습니다.
+        </p>
       </div>
-      <div class="project-card">
-        <div class="project-title">대시보드 관리 시스템</div>
-        <div class="project-desc">React와 Chart.js를 활용하여 데이터 시각화 및 실시간 상태 모니터링 기능 제공.</div>
-      </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- Education -->
-    <section>
-      <h2>Education</h2>
-      <div class="edu-item">
-        <div>
-          <span class="edu-school">한국대학교</span>
-          <span class="edu-major"> — 컴퓨터공학과 학사</span>
-        </div>
-        <div class="edu-date">2016 - 2020</div>
-      </div>
-    </section>
-
-    <!-- 설정 변경 팁 박스 -->
-    <div class="config-tip-box">
-      <h3>💡 설정 변경 팁</h3>
-      <ul>
-        <li><strong>사진 교체 시간 변경:</strong> <code>&lt;script&gt;</code> 안의 <code>intervalTime = 3000;</code> 부분의 숫자를 조절하시면 됩니다. (예: 5초 = 5000)</li>
-        <li><strong>강조 배경색 변경:</strong> <code>.career-timeline-section</code> 클래스의 <code>background-color: #f0f4f9;</code> 속성에서 원하시는 색상으로 변경하실 수 있습니다.</li>
+  <!-- Page 3: Education -->
+  <section id="education">
+    <h2 class="section-title">education</h2>
+    <div class="subtitle">기획자의 기반이 된 배움의 여정</div>
+    <div class="content-box">
+      <h3>2024 - 현재 : 서경대학교 스포츠앤테크놀로지학과 재학중</h3>
+      <ul class="clean-list">
+        <li>스포츠 및 스포츠 산업 관련 전공 학습</li>
+        <li>스포츠 기술 및 데이터 기반 프로젝트 참여</li>
+        <li>스포츠 마케팅 관련 프로젝트 및 스터디</li>
+        <li>공모전 및 팀 프로젝트 참여</li>
       </ul>
     </div>
+  </section>
 
-  </div>
+  <!-- Page 4: Career Timeline (강조 배경 적용) -->
+  <section id="career">
+    <h2 class="section-title">career timeline</h2>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-date">2025.06 - 2025.08</div>
+        <div class="timeline-title">한국체육대학교 대학원 학부연구생 ( 연구참여 )</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-date">2025.09 - 2026.09</div>
+        <div class="timeline-title">필라테스, PT강사 1년</div>
+        <img src="career1.png" alt="필라테스 PT강사 사진" class="timeline-img">
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-date">2026.08</div>
+        <div class="timeline-title">서경대학교 구독대학 ( 발표 )</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-date">2026.06 - 현재</div>
+        <div class="timeline-title">PRO-SPECS ( 피팅모델 )</div>
+        <img src="career2.png" alt="프로스펙스 로고" class="timeline-img">
+      </div>
+    </div>
+  </section>
+
+  <!-- Page 5: Certificate -->
+  <section id="certificates">
+    <h2 class="section-title">certificate</h2>
+    <div class="cert-grid">
+      <div class="cert-card">
+        <h3>스포츠 관련 자격증</h3>
+        <ul class="clean-list">
+          <li>골프 데이터 분석 자격증</li>
+          <li>스키 심판 3급 ㅣ 대한스키협회</li>
+          <li>스키 레벨 1 ㅣ 대한스키협회</li>
+          <li>
+            필라테스 지도자 자격증
+            <div class="cert-sublist">
+              • 기능해부학 및 운동기능학<br>
+              • 체형 분석 및 움직임 평가<br>
+              • 이학적 평가<br>
+              • 통증 및 재활 관련 운동 지도<br>
+              &nbsp;&nbsp;- 머리·목 / 어깨·등 / 허리·골반 / 무릎·발목 통증 재활기법<br>
+              &nbsp;&nbsp;- 골반교정 기초 및 체형교정 프로그램<br>
+              &nbsp;&nbsp;- 척추측만증·OX다리·거북목·굽은등 관련 체형교정<br>
+              &nbsp;&nbsp;- 고객 유형별 상담 기법<br>
+              &nbsp;&nbsp;- 1:1·2:1·그룹 운동 목적별 프로그램 구성
+            </div>
+          </li>
+          <li>키네시오 테이핑ㅣKTCS</li>
+        </ul>
+      </div>
+
+      <div class="cert-card">
+        <h3>기타 자격</h3>
+        <ul class="clean-list">
+          <li>정보기술자격 ITQㅣ한국생산성본부</li>
+          <li>그래픽기술자격 GTQ 2급 ㅣ한국생산성본부</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Page 6 ~ 10: Projects -->
+  <section id="projects">
+    <h2 class="section-title">projects</h2>
+
+    <!-- Project 01 -->
+    <div class="project-card">
+      <div class="project-img-container">
+        <img src="project1.png" alt="굿즈 디자인 공모전 이미지">
+      </div>
+      <div class="project-content">
+        <h3>project 01. 굿즈 디자인 공모전 _ 충청 유니버시아드</h3>
+        <div class="project-role">담당역할: 아이디어 기획, 디자인, 팀 협업</div>
+        <div class="project-exp">경험한 것: 스포츠 이벤트와 지역콘텐츠를 상품으로 연결하는 과정 경험</div>
+        <ul class="clean-list">
+          <li>충청 유니버시아드의 대회 콘셉트와 지역 특색을 반영한 굿즈 기획</li>
+          <li>대회의 정체성을 표현할 수 있는 기념 굿즈 아이디어 도출</li>
+          <li>굿즈 디자인 방향 설정 및 디자인 참여</li>
+          <li>팀원 간 아이디어 공유 및 디자인 방향 협업</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Project 02 -->
+    <div class="project-card">
+      <div class="project-img-container">
+        <img src="project2.png" alt="스포츠 제품 기획 이미지">
+      </div>
+      <div class="project-content">
+        <h3>project 02. 스포츠 제품 기획 _ 캡스톤 디자인 공모전</h3>
+        <div class="project-role">담당역할: 제품 아이디어 기획, 디자인, 결과물 제작</div>
+        <div class="project-exp">경험한 것: 아이디어를 실제 제품의 형태로 구체화 하다</div>
+        <ul class="clean-list">
+          <li>스포츠 기술 기반 제품 아이디어 도출</li>
+          <li>사용자의 필요와 제품 기능을 고려한 제품 기획</li>
+          <li>제품 디자인 및 개발 과정 참여</li>
+          <li>팀원과 출품을 위한 결과물 제작 및 발표</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Project 03 -->
+    <div class="project-card">
+      <div class="project-img-container">
+        <img src="project3.jpg" alt="학과동아리 리핏 이미지">
+      </div>
+      <div class="project-content">
+        <h3>project 03. 학과동아리 _ 리핏</h3>
+        <div class="project-role">담당역할: 부회장 및 운영진</div>
+        <ul class="clean-list">
+          <li>활동 포스터 홍보 콘텐츠 디자인</li>
+          <li>스포츠 관련 공모전 및 팀 프로젝트 참여</li>
+          <li>자격증 취득 및 스포츠 관련 연수, 교육 프로그램 참여</li>
+          <li>SPOEX 등 스포츠 산업 관련 행사 견학 및 내용 정리·발표</li>
+          <li>교내 체육대회 의무 지원 및 선수 테이핑</li>
+          <li>신입부원 대상 기초교육 및 무릎·어깨 등 이학적 검사 실습</li>
+          <li>스포츠 손상 및 의학적 주제 자료 조사 및 발표</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Project 04 -->
+    <div class="project-card">
+      <div class="project-img-container">
+        <img src="project4.jpg" alt="학과동아리 스파크 이미지">
+      </div>
+      <div class="project-content">
+        <h3>project 04. 학과동아리 _ 스파크</h3>
+        <div class="project-role">담당역할: 운영진</div>
+        <ul class="clean-list">
+          <li>스포츠 산업 트랜드 분석 및 스터디</li>
+          <li>스포츠 마케팅 실무 용어 및 사례 기반 스터디</li>
+          <li>스포츠 마케팅 관련 공모전 참여</li>
+          <li>스포츠 관련 팀 프로젝트 수행</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Project 05 -->
+    <div class="project-card no-img">
+      <div class="project-content">
+        <h3>project 05. 대회안전요원 _ LIV Golf korea</h3>
+        <div class="project-role">담당역할: 안전요원</div>
+        <div class="project-exp">경험한 것: 국제 스포츠 대회의 현장운영과 관람객 관리 경험</div>
+        <ul class="clean-list">
+          <li>LIV Golf korea 대회 현장 안전요원 참여</li>
+          <li>경기장 및 관람객 동선 관리</li>
+          <li>현장 질서 유지</li>
+          <li>경기 진행에 따른 관람객 안전관리</li>
+          <li>현장 상황에 따른 대응 및 운영 지원</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Page 11: My Story -->
+  <section id="story">
+    <h2 class="section-title">My story</h2>
+    <div class="subtitle">스포츠를 기획하는 사람으로</div>
+    <div class="story-content">
+처음에는 스포츠를 직접 경험하고 가르치는 것에서 시작했습니다. 필라테스 강사와 연구 활동을 통해 사람의 몸과 행동을 관찰하고 데이터를 기록하는 경험을 쌓았습니다.
+
+또한 서경대학교 구독대학교에서 예비시니어를 대상으로 체력평가를 발표하고 직접 실습을 진행하면서, 전문적인 내용을 사람의 눈높이에 맞춰 전달하는 경험도 쌓았습니다.
+
+이후 스포츠 동아리와 공모전 활동을 통해 스포츠를 제품과 콘텐츠, 마케팅의 관점에서 바라보기 시작했습니다.
+
+충청 유니버시아드 굿즈 디자인 공모전과 캡스톤디자인을 통해 스포츠와 제품을 연결하는 경험을 했고, SPARK 활동을 통해 스포츠 마케팅과 산업 트렌드를 공부했으며, 프로스펙스 피팅모델 활동을 통해 스포츠 제품이 실제 사용자에게 어떻게 경험되는지 직접 경험하고 있습니다.
+
+이러한 경험을 바탕으로 앞으로는 스포츠를 잘 아는 사람을 넘어, 사람들이 원하는 스포츠 제품과 경험을 기획하는 사람이 되고자 합니다.
+    </div>
+  </section>
+
+  <!-- Page 12: Contact -->
+  <section id="contact">
+    <h2 class="section-title">CONTACT</h2>
+    <div class="contact-card">
+      <div class="contact-item">
+        <h4>성명 / 소속</h4>
+        <p>이수민</p>
+        <p style="font-weight: 400; font-size: 1rem; color: var(--text-secondary);">서경대학교 스포츠앤테크놀로지학과</p>
+      </div>
+      <div class="contact-item">
+        <h4>관심 분야</h4>
+        <p>스포츠 머천다이징 · 스포츠 마케팅 · 스포츠 제품 기획</p>
+      </div>
+      <div class="contact-item" style="grid-column: 1 / -1;">
+        <h4>Email</h4>
+        <p><a href="mailto:leah720823-@naver.com" style="color: var(--accent); text-decoration: none;">leah720823-@naver.com</a></p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    &copy; 2026 Lee Sumin. All rights reserved.
+  </footer>
 
   <script>
-    // 프로필 이미지 교체 스크립트 (단일 태그 src 변경 방식)
-    const imgElement = document.getElementById('profileImage');
-    const imageList = [
-      { src: 'profile.jpg', alt: 'Profile Photo' },
-      { src: 'career1.jpg', alt: 'Career 1 Photo' }
+    // 1. 네비게이션 스무스 스크롤
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href');
+        if (targetId === '#') return;
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+          const headerOffset = 60;
+          const elementPosition = targetElement.getBoundingClientRect().top;
+          const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: "smooth"
+          });
+        }
+      });
+    });
+
+    // 2. About Me 프로필 이미지 자동 순환 (profile.jpg <-> career1.png)
+    const profileImg = document.getElementById('rotatingProfileImg');
+    const profileImageList = [
+      { src: 'profile.jpg', alt: '이수민 프로필 사진' },
+      { src: 'career1.png', alt: '필라테스 PT강사 사진' }
     ];
-    let currentIndex = 0;
-    const intervalTime = 3000; // 전환 간격 (3초)
+    let profileIndex = 0;
+    const rotateInterval = 3000; // 3초마다 이미지 전환
 
     setInterval(() => {
-      // 1. 투명도 감소 (페이드 아웃)
-      imgElement.style.opacity = '0';
+      profileImg.style.opacity = '0'; // 페이드 아웃
 
       setTimeout(() => {
-        // 2. 다음 이미지 및 alt 변경
-        currentIndex = (currentIndex + 1) % imageList.length;
-        imgElement.src = imageList[currentIndex].src;
-        imgElement.alt = imageList[currentIndex].alt;
-        
-        // 3. 다시 투명도 증가 (페이드 인)
-        imgElement.style.opacity = '1';
-      }, 500); // 0.5초 후 이미지 스위칭
-
-    }, intervalTime);
+        profileIndex = (profileIndex + 1) % profileImageList.length;
+        profileImg.src = profileImageList[profileIndex].src;
+        profileImg.alt = profileImageList[profileIndex].alt;
+        profileImg.style.opacity = '1'; // 페이드 인
+      }, 600);
+    }, rotateInterval);
   </script>
-
 </body>
 </html>
