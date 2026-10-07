@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfolio — 이수민</title>
+
+<style>
+:root{
+  --nav-h:72px;
+  --bg:#f5f5f3;
+  --text:#111;
+  --line:#ddd;
+}
+
+*{
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+  scroll-padding-top:calc(var(--nav-h) + 20px);
+}
+
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "SF Pro Display",
+    "SF Pro Text",
+    "Helvetica Neue",
+    "Apple SD Gothic Neo",
+    "Noto Sans KR",
+    Arial,
+    sans-serif;
+  -webkit-font-smoothing:antialiased;
+}
+
+
+/* =========================
+   FIXED NAVIGATION
+========================= */
+
+.nav{
+  position:fixed;
+  z-index:1000;
+  top:0;
+  left:0;
+  right:0;
+  height:var(--nav-h);
+
+  background:rgba(245,245,243,.86);
+  backdrop-filter:blur(18px) saturate(180%);
+  -webkit-backdrop-filter:blur(18px) saturate(180%);
+
+  border-bottom:1px solid rgba(0,0,0,.08);
+}
+
+.nav-inner{
+  width:min(1400px,calc(100% - 40px));
+  height:100%;
+  margin:auto;
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:20px;
+}
+
+.brand{
+  font-size:14px;
+  font-weight:700;
+  letter-spacing:.04em;
+  white-space:nowrap;
+  color:#111;
+  text-decoration:none;
+}
+
+.nav-links{
+  display:flex;
+  gap:4px;
+  align-items:center;
+}
+
+.nav-links a{
+  color:#555;
+  text-decoration:none;
+  font-size:11px;
+  letter-spacing:.04em;
+
+  padding:9px 10px;
+  border-radius:999px;
+
+  transition:.2s;
+  white-space:nowrap;
+}
+
+.nav-links a:hover,
+.nav-links a.active{
+  background:#111;
+  color:#fff;
+}
+
+.menu-toggle{
+  display:none;
+  border:0;
+  background:none;
+  font-size:22px;
+  cursor:pointer;
+  padding:6px;
+}
+
+
+/* =========================
+   PDF PAGE
+========================= */
+
+main{
+  padding-top:var(--nav-h);
+}
+
+.pdf-page{
+  width:min(1400px,100%);
+  margin:0 auto 28px;
+
+  scroll-margin-top:calc(var(--nav-h) + 20px);
+}
+
+.pdf-page canvas{
+  display:block;
+  width:100%;
+  height:auto;
+
+  background:#fff;
+
+  box-shadow:
+    0 10px 35px rgba(0,0,0,.07);
+}
+
+
+/* =========================
+   LOADING / ERROR
+========================= */
+
+.status{
+  min-height:calc(100vh - var(--nav-h));
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  color:#666;
+  font-size:14px;
+}
+
+.error{
+  padding:40px;
+  max-width:760px;
+  margin:auto;
+
+  background:#fff;
+  border:1px solid var(--line);
+
+  line-height:1.8;
+}
+
+
+/* =========================
+   TABLET
+========================= */
+
+@media(max-width:1050px){
+
+  .menu-toggle{
+    display:block;
+  }
+
+  .nav-links{
+    display:none;
+
+    position:absolute;
+    top:var(--nav-h);
+    left:0;
+    right:0;
+
+    padding:12px 20px 18px;
+
+    background:rgba(245,245,243,.97);
+
+    border-bottom:1px solid var(--line);
+
+    flex-wrap:wrap;
+  }
+
+  .nav-links.open{
+    display:flex;
+  }
+
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:600px){
+
+  :root{
+    --nav-h:62px;
+  }
+
+  .nav-inner{
+    width:calc(100% - 24px);
+  }
+
+  .brand{
+    font-size:12px;
+  }
+
+  .pdf-page{
+    margin-bottom:14px;
+  }
+
+  .nav-links a{
+    font-size:10px;
+    padding:8px;
+  }
+
+}
+</style>
+</head>
+
+
+<body>
+
+<!-- =========================
+     FIXED NAVIGATION
+========================= -->
+
+<nav class="nav" aria-label="Portfolio navigation">
+
+  <div class="nav-inner">
+
+    <a class="brand" href="#profile">
+      이수민 / PORTFOLIO
+    </a>
+
+    <button
+      class="menu-toggle"
+      id="menuToggle"
+      aria-label="메뉴 열기"
+      aria-expanded="false">
+      ☰
+    </button>
+
+    <div class="nav-links" id="navLinks">
+
+      <a href="#profile">01 PROFILE</a>
+
+      <a href="#about">02 ABOUT</a>
+
+      <a href="#education">03 EDUCATION</a>
+
+      <a href="#career">04 CAREER</a>
+
+      <a href="#certificate">05 CERTIFICATE</a>
+
+      <a href="#project01">06 PROJECT 01</a>
+
+      <a href="#project02">07 PROJECT 02</a>
+
+      <a href="#project03">08 PROJECT 03</a>
+
+      <a href="#project04">09 PROJECT 04</a>
+
+      <a href="#project05">10 PROJECT 05</a>
+
+      <a href="#skills">11 SKILLS</a>
+
+      <a href="#story">12 STORY</a>
+
+      <a href="#contact">13 CONTACT</a>
+
+    </div>
+
+  </div>
+
+</nav>
+
+
+<!-- =========================
+     PORTFOLIO
+========================= -->
+
+<main id="portfolioPages">
+
+  <div class="status" id="status">
+    포트폴리오를 불러오는 중입니다.
+  </div>
+
+</main>
+
+
+<script type="module">
+
+/*
+=========================================================
+PDF.js
+=========================================================
+
+PDF를 그대로 웹페이지에 렌더링합니다.
+
+따라서 PDF 안에 있는
+
+- 사진
+- 글자
+- 폰트
+- 배치
+- 크기
+- 페이지 구성
+
+을 HTML에서 다시 만드는 것이 아니라
+PDF 원본을 그대로 화면에 표시합니다.
+*/
+
+import * as pdfjsLib from
+"https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.10.38/pdf.min.mjs";
+
+
+pdfjsLib.GlobalWorkerOptions.workerSrc =
+"https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.10.38/pdf.worker.min.mjs";
+
+
+/*
+=========================================================
+PDF 파일 위치
+=========================================================
+
+index.html과 같은 폴더에
+
+portfolio.pdf
+
+파일을 넣어주세요.
+*/
+
+const PDF_URL = "./portfolio.pdf";
+
+
+/*
+=========================================================
+각 페이지 Anchor ID
+=========================================================
+*/
+
+const pageInfo = [
+
+  ["profile","01 PROFILE"],
+
+  ["about","02 ABOUT"],
+
+  ["education","03 EDUCATION"],
+
+  ["career","04 CAREER"],
+
+  ["certificate","05 CERTIFICATE"],
+
+  ["project01","06 PROJECT 01"],
+
+  ["project02","07 PROJECT 02"],
+
+  ["project03","08 PROJECT 03"],
+
+  ["project04","09 PROJECT 04"],
+
+  ["project05","10 PROJECT 05"],
+
+  ["skills","11 SKILLS"],
+
+  ["story","12 STORY"],
+
+  ["contact","13 CONTACT"]
+
+];
+
+
+const main =
+document.getElementById("portfolioPages");
+
+const status =
+document.getElementById("status");
+
+const navLinks =
+[
+  ...document.querySelectorAll(".nav-links a")
+];
+
+const menuToggle =
+document.getElementById("menuToggle");
+
+const navLinksWrap =
+document.getElementById("navLinks");
+
+
+/*
+=========================================================
+모바일 메뉴
+=========================================================
+*/
+
+menuToggle.addEventListener("click",()=>{
+
+  const open =
+    navLinksWrap.classList.toggle("open");
+
+  menuToggle.setAttribute(
+    "aria-expanded",
+    String(open)
+  );
+
+});
+
+
+navLinks.forEach(link=>{
+
+  link.addEventListener("click",()=>{
+
+    navLinksWrap.classList.remove("open");
+
+    menuToggle.setAttribute(
+      "aria-expanded",
+      "false"
+    );
+
+  });
+
+});
+
+
+/*
+=========================================================
+PDF 렌더링
+=========================================================
+*/
+
+async function renderPortfolio(){
+
+  try{
+
+    const pdf =
+      await pdfjsLib
+        .getDocument(PDF_URL)
+        .promise;
+
+
+    status.remove();
+
+
+    const count =
+      Math.min(
+        pdf.numPages,
+        pageInfo.length
+      );
+
+
+    /*
+    PDF의 각 페이지를 하나씩 생성
+    */
+
+    for(
+      let i = 1;
+      i <= count;
+      i++
+    ){
+
+      const [
+        id,
+        label
+      ] = pageInfo[i - 1];
+
+
+      /*
+      페이지 SECTION 생성
+      */
+
+      const section =
+        document.createElement("section");
+
+      section.className =
+        "pdf-page";
+
+      section.id =
+        id;
+
+      section.setAttribute(
+        "aria-label",
+        label
+      );
+
+
+      /*
+      PDF를 표시할 Canvas
+      */
+
+      const canvas =
+        document.createElement("canvas");
+
+
+      section.appendChild(canvas);
+
+      main.appendChild(section);
+
+
+      /*
+      PDF 페이지 가져오기
+      */
+
+      const page =
+        await pdf.getPage(i);
+
+
+      /*
+      PDF 원본 크기
+      */
+
+      const base =
+        page.getViewport({
+          scale:1
+        });
+
+
+      /*
+      화면 크기에 맞게 축소
+      */
+
+      const displayWidth =
+        Math.min(
+          1400,
+          window.innerWidth
+        );
+
+
+      const scale =
+        displayWidth /
+        base.width;
+
+
+      /*
+      Retina / 고해상도 대응
+      */
+
+      const dpr =
+        Math.min(
+          window.devicePixelRatio || 1,
+          2
+        );
+
+
+      const viewport =
+        page.getViewport({
+          scale:
+            scale * dpr
+        });
+
+
+      canvas.width =
+        Math.floor(
+          viewport.width
+        );
+
+      canvas.height =
+        Math.floor(
+          viewport.height
+        );
+
+
+      /*
+      화면 표시 크기는 PDF 원본 비율 유지
+      */
+
+      canvas.style.width =
+        displayWidth + "px";
+
+      canvas.style.height =
+        (base.height * scale) + "px";
+
+
+      /*
+      실제 PDF 렌더링
+      */
+
+      await page.render({
+
+        canvasContext:
+          canvas.getContext(
+            "2d",
+            {
+              alpha:false
+            }
+          ),
+
+        viewport:
+          viewport
+
+      }).promise;
+
+    }
+
+
+    /*
+    =====================================================
+    현재 보고 있는 페이지에 맞춰
+    상단 메뉴 active 처리
+    =====================================================
+    */
+
+    const sections =
+      [
+        ...document.querySelectorAll(
+          ".pdf-page"
+        )
+      ];
+
+
+    const observer =
+      new IntersectionObserver(
+
+        entries=>{
+
+          const visible =
+            entries
+              .filter(
+                entry =>
+                  entry.isIntersecting
+              )
+              .sort(
+                (a,b)=>
+                  b.intersectionRatio -
+                  a.intersectionRatio
+              )[0];
+
+
+          if(!visible){
+            return;
+          }
+
+
+          navLinks.forEach(link=>{
+
+            link.classList.toggle(
+
+              "active",
+
+              link.getAttribute(
+                "href"
+              ) ===
+              "#" +
+              visible.target.id
+
+            );
+
+          });
+
+        },
+
+        {
+          rootMargin:
+            "-72px 0px -55% 0px",
+
+          threshold:
+            [0,.1,.25,.5]
+        }
+
+      );
+
+
+    sections.forEach(section=>{
+
+      observer.observe(section);
+
+    });
+
+  }
+
+
+  catch(error){
+
+    console.error(error);
+
+
+    status.innerHTML = `
+
+      <div class="error">
+
+        <strong>
+          포트폴리오 PDF를 불러오지 못했습니다.
+        </strong>
+
+        <br><br>
+
+        <code>index.html</code>과
+        같은 폴더에
+
+        <code>portfolio.pdf</code>
+
+        파일이 있는지 확인해주세요.
+
+      </div>
+
+    `;
+
+  }
+
+}
+
+
+/*
+=========================================================
+실행
+=========================================================
+*/
+
+renderPortfolio();
+
+</script>
+
+</body>
+</html>
