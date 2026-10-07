@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>이수민 | Portfolio</title>
   <style>
-    /* CSS Reset & Variables (Apple / MIT Media Lab Minimalist Style) */
     :root {
       --bg-color: #fbfbfd;
       --card-bg: #ffffff;
@@ -170,7 +169,7 @@
       line-height: 1.8;
     }
 
-    /* Education & Project List UI */
+    /* Content Box UI */
     .content-box {
       background: var(--card-bg);
       padding: 32px;
@@ -243,9 +242,10 @@
       border-radius: 8px;
       margin-top: 12px;
       border: 1px solid var(--border-color);
+      display: block;
     }
 
-    /* Certificates 2-Column Grid */
+    /* Certificates Grid */
     .cert-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -275,7 +275,7 @@
       color: var(--text-secondary);
     }
 
-    /* Project Layouts */
+    /* Project Cards */
     .project-card {
       background: var(--card-bg);
       border-radius: 16px;
@@ -377,7 +377,7 @@
       border-top: 1px solid var(--border-color);
     }
 
-    /* Responsive Breakpoints */
+    /* Responsive */
     @media (max-width: 768px) {
       h1.main-title { font-size: 2.5rem; }
       h2.section-title { font-size: 1.8rem; }
@@ -385,7 +385,7 @@
         grid-template-columns: 1fr;
       }
       .project-card { display: flex; flex-direction: column; }
-      .nav-menu { display: none; } /* 모바일 간결화 */
+      .nav-menu { display: none; }
       section { padding-top: 100px; }
     }
   </style>
@@ -422,7 +422,7 @@
       <div class="about-left">
         <h3 class="subtitle">이수민 lee sumin</h3>
         <div class="about-img-wrapper">
-          <img src="1번째.jpg" alt="이수민 프로필 사진">
+          <img src="profile.jpg" alt="이수민 프로필 사진">
         </div>
         <div class="info-list">
           <p>전화번호: 010.2692.2014</p>
@@ -465,7 +465,7 @@
       <div class="timeline-item">
         <div class="timeline-date">2025.09 - 2026.09</div>
         <div class="timeline-title">필라테스, PT강사 1년</div>
-        <img src="2번째.png" alt="필라테스 PT강사 사진" class="timeline-img">
+        <img src="career1.png" alt="필라테스 PT강사 사진" class="timeline-img">
       </div>
       <div class="timeline-item">
         <div class="timeline-date">2026.08</div>
@@ -474,7 +474,7 @@
       <div class="timeline-item">
         <div class="timeline-date">2026.06 - 현재</div>
         <div class="timeline-title">PRO-SPECS ( 피팅모델 )</div>
-        <img src="3번째.png" alt="프로스펙스 로고" class="timeline-img">
+        <img src="career2.png" alt="프로스펙스 로고" class="timeline-img">
       </div>
     </div>
   </section>
@@ -483,7 +483,6 @@
   <section id="certificates">
     <h2 class="section-title">certificate</h2>
     <div class="cert-grid">
-      <!-- Left Box: Sports Certificates -->
       <div class="cert-card">
         <h3>스포츠 관련 자격증</h3>
         <ul class="clean-list">
@@ -508,7 +507,6 @@
         </ul>
       </div>
 
-      <!-- Right Box: Other Certificates -->
       <div class="cert-card">
         <h3>기타 자격</h3>
         <ul class="clean-list">
@@ -526,7 +524,7 @@
     <!-- Project 01 -->
     <div class="project-card">
       <div class="project-img-container">
-        <img src="4번째 .png" alt="굿즈 디자인 공모전 이미지">
+        <img src="project1.png" alt="굿즈 디자인 공모전 이미지">
       </div>
       <div class="project-content">
         <h3>project 01. 굿즈 디자인 공모전 _ 충청 유니버시아드</h3>
@@ -544,7 +542,7 @@
     <!-- Project 02 -->
     <div class="project-card">
       <div class="project-img-container">
-        <img src="5번째.png" alt="스포츠 제품 기획 이미지">
+        <img src="project2.png" alt="스포츠 제품 기획 이미지">
       </div>
       <div class="project-content">
         <h3>project 02. 스포츠 제품 기획 _ 캡스톤 디자인 공모전</h3>
@@ -562,7 +560,7 @@
     <!-- Project 03 -->
     <div class="project-card">
       <div class="project-img-container">
-        <img src="6번째 .jpg" alt="학과동아리 리핏 이미지">
+        <img src="project3.jpg" alt="학과동아리 리핏 이미지">
       </div>
       <div class="project-content">
         <h3>project 03. 학과동아리 _ 리핏</h3>
@@ -582,7 +580,7 @@
     <!-- Project 04 -->
     <div class="project-card">
       <div class="project-img-container">
-        <img src="7번째.jpg" alt="학과동아리 스파크 이미지">
+        <img src="project4.jpg" alt="학과동아리 스파크 이미지">
       </div>
       <div class="project-content">
         <h3>project 04. 학과동아리 _ 스파크</h3>
@@ -655,7 +653,6 @@
   </footer>
 
   <script>
-    // Smooth scrolling & active navigation offset handler
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function (e) {
         e.preventDefault();
