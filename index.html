@@ -3,23 +3,25 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <meta
-    name="description"
-    content="이수민 포트폴리오 - 스포츠를 경험하고, 분석하고, 기획합니다."
-  >
-
-  <title>Portfolio | 이수민</title>
-
+  <title>이수민 | Portfolio</title>
   <style>
-    /* ==============================
-       RESET
-    ============================== */
+    /* CSS Reset & Variables (Apple / MIT Media Lab Minimalist Style) */
+    :root {
+      --bg-color: #fbfbfd;
+      --card-bg: #ffffff;
+      --text-primary: #1d1d1f;
+      --text-secondary: #86868b;
+      --accent: #0066cc;
+      --border-color: #e5e5e5;
+      --max-width: 1080px;
+      --font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
+    }
 
     * {
-      box-sizing: border-box;
       margin: 0;
       padding: 0;
+      box-sizing: border-box;
+      word-break: keep-all;
     }
 
     html {
@@ -27,2258 +29,651 @@
     }
 
     body {
-      background: #ffffff;
-      color: #111111;
-      font-family:
-        Arial,
-        "Noto Sans KR",
-        "Apple SD Gothic Neo",
-        sans-serif;
+      font-family: var(--font-family);
+      background-color: var(--bg-color);
+      color: var(--text-primary);
       line-height: 1.6;
-      word-break: keep-all;
+      -webkit-font-smoothing: antialiased;
     }
 
-    img {
-      display: block;
-      max-width: 100%;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    button {
-      font-family: inherit;
-    }
-
-    :root {
-      --black: #111111;
-      --dark-gray: #444444;
-      --gray: #777777;
-      --light-gray: #f5f5f5;
-      --line: #dddddd;
-      --max-width: 1440px;
-    }
-
-
-    /* ==============================
-       NAVIGATION
-    ============================== */
-
-    .nav {
+    /* Fixed Navigation Bar */
+    header {
       position: fixed;
       top: 0;
       left: 0;
-      right: 0;
+      width: 100%;
+      height: 60px;
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border-color);
+      z-index: 1000;
+      display: flex;
+      justify-content: center;
+    }
 
-      height: 68px;
-
+    nav {
+      width: 100%;
+      max-width: var(--max-width);
+      height: 100%;
       display: flex;
       align-items: center;
       justify-content: space-between;
-
-      padding: 0 34px;
-
-      background: rgba(255, 255, 255, 0.94);
-      backdrop-filter: blur(12px);
-
-      border-bottom: 1px solid rgba(0, 0, 0, 0.08);
-
-      z-index: 1000;
+      padding: 0 24px;
     }
 
     .nav-logo {
-      font-size: 14px;
+      font-size: 1.1rem;
       font-weight: 700;
-      letter-spacing: 0.04em;
-      white-space: nowrap;
+      color: var(--text-primary);
+      text-decoration: none;
+      letter-spacing: -0.5px;
     }
 
-    .nav-links {
+    .nav-menu {
       display: flex;
-      align-items: center;
       gap: 24px;
-
-      overflow-x: auto;
-      scrollbar-width: none;
+      list-style: none;
     }
 
-    .nav-links::-webkit-scrollbar {
-      display: none;
-    }
-
-    .nav-links a {
-      flex: 0 0 auto;
-
-      color: #888888;
-
-      font-size: 12px;
-      white-space: nowrap;
-
+    .nav-menu a {
+      font-size: 0.88rem;
+      color: var(--text-secondary);
+      text-decoration: none;
       transition: color 0.2s ease;
     }
 
-    .nav-links a:hover,
-    .nav-links a.active {
-      color: #111111;
+    .nav-menu a:hover {
+      color: var(--text-primary);
     }
 
-    .menu-button {
-      display: none;
-
-      border: 0;
-      background: none;
-
-      font-size: 20px;
-      cursor: pointer;
-    }
-
-
-    /* ==============================
-       COMMON
-    ============================== */
-
-    main {
-      padding-top: 68px;
-    }
-
+    /* Layout & Sections */
     section {
-      width: 100%;
+      padding: 120px 24px 80px;
       max-width: var(--max-width);
-
       margin: 0 auto;
-
-      padding: 150px 6vw;
-
-      scroll-margin-top: 68px;
+      border-bottom: 1px solid var(--border-color);
     }
 
-    .section-label {
-      margin-bottom: 34px;
-
-      font-size: 12px;
-      font-weight: 700;
-
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
+    section:last-of-type {
+      border-bottom: none;
     }
 
-    .section-title {
-      margin: 0;
-
-      font-size: clamp(48px, 8vw, 120px);
-      line-height: 0.92;
-
-      letter-spacing: -0.06em;
-      font-weight: 800;
-    }
-
-    .sub-title {
-      margin-top: 26px;
-
-      font-size: clamp(20px, 2.5vw, 34px);
-      line-height: 1.25;
-
-      font-weight: 600;
-      letter-spacing: -0.04em;
-    }
-
-    .body-copy {
-      color: var(--gray);
-
-      font-size: 15px;
-      line-height: 1.9;
-    }
-
-    .reveal {
-      opacity: 0;
-      transform: translateY(25px);
-
-      transition:
-        opacity 0.7s ease,
-        transform 0.7s ease;
-    }
-
-    .reveal.show {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-
-    /* ==============================
-       01 PROFILE
-    ============================== */
-
-    #profile {
-      min-height: calc(100vh - 68px);
-
+    .hero-section {
+      min-height: 80vh;
       display: flex;
       flex-direction: column;
       justify-content: center;
-
-      padding-top: 100px;
-      padding-bottom: 100px;
+      align-items: flex-start;
+      border-bottom: 1px solid var(--border-color);
     }
 
-    .profile-word {
-      font-size: clamp(72px, 15vw, 230px);
-
-      line-height: 0.8;
-
-      letter-spacing: -0.075em;
-      font-weight: 800;
-    }
-
-    .profile-line {
-      margin-top: 48px;
-
-      display: flex;
-      align-items: flex-end;
-      justify-content: space-between;
-
-      gap: 50px;
-    }
-
-    .profile-name {
-      font-size: clamp(30px, 4vw, 60px);
-
-      line-height: 1.1;
-
-      letter-spacing: -0.06em;
+    h1.main-title {
+      font-size: 3.5rem;
       font-weight: 700;
+      letter-spacing: -1.5px;
+      margin-bottom: 24px;
+      color: var(--text-primary);
     }
 
-    .profile-desc {
-      max-width: 500px;
+    h2.section-title {
+      font-size: 2.2rem;
+      font-weight: 700;
+      letter-spacing: -1px;
+      margin-bottom: 12px;
+      text-transform: uppercase;
+    }
 
-      color: #888888;
+    .subtitle {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 12px;
+    }
 
-      font-size: 16px;
+    .muted-text {
+      font-size: 1.1rem;
+      color: var(--text-secondary);
+      font-weight: 400;
+      line-height: 1.7;
+    }
+
+    /* About Section */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: center;
+      margin-top: 40px;
+    }
+
+    .about-left {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .about-img-wrapper img {
+      max-width: 100%;
+      height: auto;
+      max-height: 480px;
+      border-radius: 12px;
+      object-fit: cover;
+      margin: 20px 0;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    }
+
+    .info-list {
+      font-size: 0.95rem;
+      color: var(--text-secondary);
       line-height: 1.8;
     }
 
-
-    /* ==============================
-       02 ABOUT ME
-    ============================== */
-
-    .about-grid {
-      display: grid;
-
-      grid-template-columns:
-        0.75fr
-        1.05fr
-        1fr;
-
-      gap: 6vw;
-
-      align-items: center;
+    /* Education & Project List UI */
+    .content-box {
+      background: var(--card-bg);
+      padding: 32px;
+      border-radius: 16px;
+      border: 1px solid var(--border-color);
+      margin-top: 32px;
     }
 
-    .about-left h2 {
-      font-size: clamp(30px, 4vw, 60px);
-
-      line-height: 1;
-
-      letter-spacing: -0.06em;
+    ul.clean-list {
+      list-style: none;
+      margin-top: 16px;
     }
 
-    .about-left .en {
-      display: block;
-
-      margin-top: 10px;
-
-      color: #888888;
-
-      font-size: 16px;
-
-      letter-spacing: 0.04em;
-    }
-
-    .about-contact {
-      margin-top: 50px;
-
-      color: #777777;
-
-      font-size: 13px;
-      line-height: 2.1;
-    }
-
-    .about-image-wrap {
-      min-height: 540px;
-
-      display: flex;
-      justify-content: center;
-      align-items: flex-end;
-    }
-
-    /*
-      첫 번째 이미지
-      반드시:
-      images/image-01.png
-    */
-
-    .about-image {
-      width: min(100%, 430px);
-
-      max-height: 620px;
-
-      object-fit: contain;
-      object-position: bottom center;
-    }
-
-    .about-right h3 {
-      margin-bottom: 28px;
-
-      font-size: clamp(28px, 3.2vw, 48px);
-
-      line-height: 1.25;
-
-      letter-spacing: -0.055em;
-    }
-
-    .about-right p {
-      max-width: 600px;
-    }
-
-
-    /* ==============================
-       03 EDUCATION
-    ============================== */
-
-    .education-top {
-      margin-bottom: 95px;
-    }
-
-    .education-row {
-      display: grid;
-
-      grid-template-columns: 1fr 1.8fr;
-
-      gap: 40px;
-
-      padding-top: 24px;
-
-      border-top: 1px solid #111111;
-    }
-
-    .education-date {
-      margin-bottom: 6px;
-
-      color: #777777;
-
-      font-size: 14px;
-    }
-
-    .education-main {
-      font-size: clamp(24px, 3vw, 42px);
-
-      font-weight: 700;
-
-      line-height: 1.3;
-
-      letter-spacing: -0.05em;
-    }
-
-    .education-list {
+    ul.clean-list li {
+      position: relative;
       padding-left: 20px;
-
-      color: #555555;
-
-      font-size: 15px;
-      line-height: 2;
+      margin-bottom: 10px;
+      font-size: 1rem;
+      color: var(--text-primary);
     }
 
-
-    /* ==============================
-       04 CAREER TIMELINE
-    ============================== */
-
-    .career-layout {
-      display: grid;
-
-      grid-template-columns: 0.65fr 1.35fr;
-
-      gap: 8vw;
+    ul.clean-list li::before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      color: var(--text-secondary);
     }
 
-    .career-intro {
-      position: sticky;
-      top: 130px;
-
-      align-self: start;
-    }
-
+    /* Timeline Section */
     .timeline {
       position: relative;
-    }
-
-    .timeline::before {
-      content: "";
-
-      position: absolute;
-
-      top: 0;
-      bottom: 0;
-
-      left: 50%;
-
-      width: 1px;
-
-      background: #cccccc;
-
-      transform: translateX(-50%);
+      margin-top: 40px;
+      padding-left: 20px;
+      border-left: 2px solid var(--border-color);
     }
 
     .timeline-item {
       position: relative;
-
-      display: grid;
-
-      grid-template-columns: 1fr 1fr;
-
-      min-height: 280px;
-
-      align-items: center;
+      margin-bottom: 40px;
+      padding-left: 24px;
     }
 
-    .timeline-dot {
+    .timeline-item::before {
+      content: "";
       position: absolute;
-
-      left: 50%;
-      top: 50%;
-
-      width: 16px;
-      height: 16px;
-
-      background: #111111;
-
+      left: -27px;
+      top: 6px;
+      width: 12px;
+      height: 12px;
       border-radius: 50%;
-
-      transform: translate(-50%, -50%);
-
-      z-index: 2;
-    }
-
-    .timeline-content {
-      padding: 35px 45px;
-    }
-
-    .timeline-item:nth-child(odd) .timeline-content {
-      grid-column: 1;
-
-      text-align: right;
-    }
-
-    .timeline-item:nth-child(even) .timeline-content {
-      grid-column: 2;
-
-      text-align: left;
+      background: var(--text-primary);
     }
 
     .timeline-date {
-      color: #888888;
-
-      font-size: 14px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      margin-bottom: 4px;
     }
 
     .timeline-title {
-      margin-top: 10px;
-      margin-bottom: 4px;
-
-      font-size: clamp(26px, 3vw, 48px);
-
-      font-weight: 800;
-
-      line-height: 1.1;
-
-      letter-spacing: -0.055em;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 12px;
     }
 
-    .timeline-role {
-      color: #777777;
-
-      font-size: 16px;
+    .timeline-img {
+      max-width: 240px;
+      border-radius: 8px;
+      margin-top: 12px;
+      border: 1px solid var(--border-color);
     }
 
-    /*
-      Career 이미지
-
-      2번째 이미지:
-      images/image-02.png
-
-      3번째 이미지:
-      images/image-03.png
-    */
-
-    .timeline-image {
-      display: block;
-
-      width: auto;
-      max-width: 230px;
-
-      height: auto;
-      max-height: 160px;
-
-      object-fit: contain;
-
-      margin-top: 18px;
-    }
-
-    .timeline-item:nth-child(odd) .timeline-image {
-      margin-left: auto;
-      margin-right: 0;
-    }
-
-    .timeline-item:nth-child(even) .timeline-image {
-      margin-left: 0;
-      margin-right: auto;
-    }
-
-
-    /* ==============================
-       05 CERTIFICATE
-    ============================== */
-
-    .certificate-grid {
+    /* Certificates 2-Column Grid */
+    .cert-grid {
       display: grid;
-
       grid-template-columns: 1fr 1fr;
-
       gap: 24px;
-
-      margin-top: 80px;
+      margin-top: 32px;
     }
 
-    .certificate-box {
-      min-height: 420px;
-
-      padding: 36px;
-
-      border: 1px solid #111111;
+    .cert-card {
+      background: var(--card-bg);
+      padding: 32px;
+      border-radius: 16px;
+      border: 1px solid var(--border-color);
     }
 
-    .certificate-box h3 {
-      margin-bottom: 30px;
-
-      font-size: 15px;
-
-      letter-spacing: 0.12em;
-
-      text-transform: uppercase;
+    .cert-card h3 {
+      font-size: 1.3rem;
+      margin-bottom: 20px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border-color);
     }
 
-    .certificate-item {
-      margin-bottom: 28px;
-    }
-
-    .certificate-name {
-      font-size: 17px;
-
-      font-weight: 700;
-
-      line-height: 1.6;
-    }
-
-    .certificate-detail {
+    .cert-sublist {
+      margin-left: 16px;
       margin-top: 8px;
-
-      padding-left: 18px;
-
-      color: #666666;
-
-      font-size: 13px;
-
-      line-height: 1.85;
+      margin-bottom: 12px;
+      font-size: 0.9rem;
+      color: var(--text-secondary);
     }
 
-
-    /* ==============================
-       PROJECT COMMON
-    ============================== */
-
-    .project-section {
-      border-top: 1px solid #dddddd;
-    }
-
-    .project-grid {
+    /* Project Layouts */
+    .project-card {
+      background: var(--card-bg);
+      border-radius: 16px;
+      border: 1px solid var(--border-color);
+      overflow: hidden;
+      margin-top: 32px;
       display: grid;
-
-      grid-template-columns: 0.55fr 1.45fr;
-
-      gap: 8vw;
-
-      align-items: start;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
     }
 
-    .project-number {
-      margin-bottom: 28px;
-
-      font-size: 13px;
-
-      font-weight: 700;
-
-      letter-spacing: 0.12em;
+    .project-card.no-img {
+      grid-template-columns: 1fr;
     }
 
-    .project-title {
-      font-size: clamp(30px, 4vw, 60px);
-
-      line-height: 1.08;
-
-      letter-spacing: -0.06em;
-
-      font-weight: 700;
+    .project-img-container {
+      background: #f2f2f7;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
     }
 
-    /*
-      프로젝트 이미지
-
-      Project 01:
-      images/image-04.png
-
-      Project 02:
-      images/image-05.png
-    */
-
-    .project-image {
-      display: block;
-
-      width: 100%;
-
-      max-height: 460px;
-
+    .project-img-container img {
+      max-width: 100%;
+      max-height: 360px;
       object-fit: contain;
-      object-position: left center;
-
-      margin-bottom: 42px;
+      border-radius: 8px;
     }
 
-    .project-meta {
-      padding-top: 20px;
-
-      margin-bottom: 38px;
-
-      border-top: 1px solid #111111;
-    }
-
-    .meta-label {
-      display: block;
-
-      margin-bottom: 8px;
-
-      color: #888888;
-
-      font-size: 12px;
-    }
-
-    .meta-value {
-      font-size: 16px;
-
-      font-weight: 700;
-    }
-
-    .project-block {
-      margin-bottom: 40px;
-    }
-
-    .project-block h4 {
-      margin-bottom: 15px;
-
-      font-size: 13px;
-
-      letter-spacing: 0.08em;
-
-      text-transform: uppercase;
-    }
-
-    .project-block p,
-    .project-block ul {
-      color: #555555;
-
-      font-size: 15px;
-
-      line-height: 1.9;
-    }
-
-    .project-block ul {
-      padding-left: 20px;
-    }
-
-
-    /* ==============================
-       MY STORY
-    ============================== */
-
-    #story {
-      width: 100%;
-      max-width: none;
-
-      background: #f6f6f6;
-    }
-
-    .story-inner {
-      max-width: var(--max-width);
-
-      margin: 0 auto;
-    }
-
-    .story-text {
-      max-width: 920px;
-
-      margin-top: 80px;
-
-      font-size: clamp(20px, 2.1vw, 30px);
-
-      line-height: 1.75;
-
-      letter-spacing: -0.035em;
-    }
-
-    .story-text p {
-      margin-bottom: 34px;
-    }
-
-    .story-highlight {
-      font-size: clamp(25px, 3vw, 44px);
-
-      font-weight: 800;
-    }
-
-
-    /* ==============================
-       CONTACT
-    ============================== */
-
-    #contact {
-      min-height: 70vh;
-
+    .project-content {
+      padding: 40px;
       display: flex;
       flex-direction: column;
       justify-content: center;
     }
 
-    .contact-grid {
+    .project-role {
+      display: inline-block;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      margin-bottom: 12px;
+      background: #f2f2f7;
+      padding: 4px 12px;
+      border-radius: 20px;
+      width: fit-content;
+    }
+
+    .project-exp {
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--accent);
+      margin-bottom: 20px;
+    }
+
+    /* Story Section */
+    .story-content {
+      font-size: 1.1rem;
+      line-height: 1.9;
+      color: var(--text-primary);
+      white-space: pre-line;
+      background: var(--card-bg);
+      padding: 40px;
+      border-radius: 16px;
+      border: 1px solid var(--border-color);
+      margin-top: 32px;
+    }
+
+    /* Contact Section */
+    .contact-card {
+      background: var(--card-bg);
+      padding: 40px;
+      border-radius: 16px;
+      border: 1px solid var(--border-color);
+      margin-top: 32px;
       display: grid;
-
       grid-template-columns: 1fr 1fr;
-
-      gap: 80px;
-
-      margin-top: 80px;
-
-      padding-top: 28px;
-
-      border-top: 1px solid #111111;
+      gap: 24px;
     }
 
-    .contact-name {
-      font-size: clamp(30px, 4vw, 58px);
-
-      font-weight: 800;
-
-      letter-spacing: -0.06em;
+    .contact-item h4 {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      margin-bottom: 4px;
+      text-transform: uppercase;
     }
 
-    .contact-info {
-      color: #666666;
-
-      font-size: 14px;
-
-      line-height: 2;
+    .contact-item p {
+      font-size: 1.1rem;
+      font-weight: 600;
     }
 
-
-    /* ==============================
-       IMAGE ERROR MESSAGE
-    ============================== */
-
-    .image-box {
-      position: relative;
+    footer {
+      text-align: center;
+      padding: 40px 24px;
+      color: var(--text-secondary);
+      font-size: 0.85rem;
+      border-top: 1px solid var(--border-color);
     }
 
-    .image-box img {
-      min-height: 100px;
-    }
-
-
-    /* ==============================
-       MOBILE
-    ============================== */
-
-    @media (max-width: 900px) {
-
-      .nav {
-        padding: 0 20px;
-      }
-
-      .nav-links {
-        position: fixed;
-
-        top: 68px;
-        left: 0;
-        right: 0;
-
-        display: none;
-
-        flex-direction: column;
-
-        align-items: flex-start;
-
-        padding: 24px 20px;
-
-        background: #ffffff;
-
-        border-bottom: 1px solid #dddddd;
-
-        gap: 17px;
-      }
-
-      .nav-links.open {
-        display: flex;
-      }
-
-      .menu-button {
-        display: block;
-      }
-
-      section {
-        padding: 100px 22px;
-      }
-
-      .profile-line {
-        display: block;
-      }
-
-      .profile-desc {
-        margin-top: 25px;
-      }
-
-      .about-grid,
-      .career-layout,
-      .project-grid,
-      .education-row,
-      .certificate-grid,
-      .contact-grid {
+    /* Responsive Breakpoints */
+    @media (max-width: 768px) {
+      h1.main-title { font-size: 2.5rem; }
+      h2.section-title { font-size: 1.8rem; }
+      .about-grid, .cert-grid, .project-card, .contact-card {
         grid-template-columns: 1fr;
       }
-
-      .about-left {
-        order: 1;
-      }
-
-      .about-image-wrap {
-        order: 2;
-
-        min-height: 400px;
-      }
-
-      .about-right {
-        order: 3;
-      }
-
-      .career-intro {
-        position: static;
-
-        margin-bottom: 60px;
-      }
-
-      .timeline::before {
-        left: 8px;
-
-        transform: none;
-      }
-
-      .timeline-item {
-        display: block;
-
-        min-height: auto;
-
-        padding-left: 32px;
-
-        margin-bottom: 60px;
-      }
-
-      .timeline-dot {
-        left: 8px;
-        top: 12px;
-
-        width: 14px;
-        height: 14px;
-
-        transform: none;
-      }
-
-      .timeline-item:nth-child(odd) .timeline-content,
-      .timeline-item:nth-child(even) .timeline-content {
-        padding: 0;
-
-        text-align: left;
-      }
-
-      .timeline-item:nth-child(odd) .timeline-image,
-      .timeline-item:nth-child(even) .timeline-image {
-        margin-left: 0;
-        margin-right: auto;
-      }
-
-      .certificate-box {
-        min-height: 0;
-      }
-    }
-
-
-    /* ==============================
-       SMALL MOBILE
-    ============================== */
-
-    @media (max-width: 600px) {
-
-      .profile-word {
-        font-size: 22vw;
-      }
-
-      .profile-name {
-        font-size: 32px;
-      }
-
-      .section-title {
-        font-size: 56px;
-      }
-
-      .about-image {
-        width: 80%;
-      }
-
-      .timeline-title {
-        font-size: 30px;
-      }
-
-      .project-title {
-        font-size: 34px;
-      }
-
-      .story-text {
-        font-size: 20px;
-      }
+      .project-card { display: flex; flex-direction: column; }
+      .nav-menu { display: none; } /* 모바일 간결화 */
+      section { padding-top: 100px; }
     }
   </style>
 </head>
-
-
 <body>
 
-  <!-- =========================================================
-       NAVIGATION
-  ========================================================= -->
-
-  <header class="nav">
-
-    <a href="#profile" class="nav-logo">
-      LEE SU MIN
-    </a>
-
-    <button
-      type="button"
-      class="menu-button"
-      id="menuButton"
-      aria-label="메뉴 열기"
-    >
-      ☰
-    </button>
-
-    <nav class="nav-links" id="navLinks">
-
-      <a href="#profile">Profile</a>
-
-      <a href="#about">About Me</a>
-
-      <a href="#education">Education</a>
-
-      <a href="#career">Career</a>
-
-      <a href="#certificate">Certificate</a>
-
-      <a href="#project01">Project 01</a>
-
-      <a href="#project02">Project 02</a>
-
-      <a href="#project03">Project 03</a>
-
-      <a href="#project04">Project 04</a>
-
-      <a href="#project05">Project 05</a>
-
-      <a href="#story">My Story</a>
-
-      <a href="#contact">Contact</a>
-
+  <!-- Fixed Navigation Bar -->
+  <header>
+    <nav>
+      <a href="#hero" class="nav-logo">LEESUMIN</a>
+      <ul class="nav-menu">
+        <li><a href="#about">About</a></li>
+        <li><a href="#education">Education</a></li>
+        <li><a href="#career">Career</a></li>
+        <li><a href="#certificates">Certificates</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#story">Story</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
     </nav>
-
   </header>
 
+  <!-- Page 1: Hero -->
+  <section id="hero" class="hero-section">
+    <h1 class="main-title">portfolio</h1>
+    <div class="subtitle">나무보단 숲을 보는 사람, 이수민입니다.</div>
+    <div class="muted-text">스포츠를 직접 경험하고, 스포츠제품과 콘텐츠를 새로운 관점에서 바라봅니다.</div>
+  </section>
 
-  <main>
-
-
-    <!-- =====================================================
-         01 PROFILE
-    ====================================================== -->
-
-    <section id="profile" class="reveal">
-
-      <p class="profile-word">
-        portfolio
-      </p>
-
-      <div class="profile-line">
-
-        <h1 class="profile-name">
-          나무보단 숲을 보는 사람, 이수민입니다.
-        </h1>
-
-        <p class="profile-desc">
-          스포츠를 직접 경험하고,
-          스포츠제품과 콘텐츠를 새로운 관점에서 바라봅니다.
-        </p>
-
+  <!-- Page 2: About Me -->
+  <section id="about">
+    <h2 class="section-title">about me</h2>
+    <div class="about-grid">
+      <div class="about-left">
+        <h3 class="subtitle">이수민 lee sumin</h3>
+        <div class="about-img-wrapper">
+          <img src="1번째.jpg" alt="이수민 프로필 사진">
+        </div>
+        <div class="info-list">
+          <p>전화번호: 010.2692.2014</p>
+          <p>이메일: leah720823-@naver.com</p>
+          <p>생년월일: 2004.08.23</p>
+        </div>
       </div>
-
-    </section>
-
-
-
-    <!-- =====================================================
-         02 ABOUT ME
-    ====================================================== -->
-
-    <section id="about" class="reveal">
-
-      <p class="section-label">
-        About Me
-      </p>
-
-      <div class="about-grid">
-
-
-        <!-- 왼쪽 -->
-
-        <div class="about-left">
-
-          <h2>
-            이수민
-          </h2>
-
-          <span class="en">
-            LEE SU MIN
-          </span>
-
-          <div class="about-contact">
-
-            <div>
-              010.2692.2014
-            </div>
-
-            <div>
-              leah720823-@naver.com
-            </div>
-
-            <div>
-              2004.08.23
-            </div>
-
-          </div>
-
-        </div>
-
-
-
-        <!-- 가운데 : 1번째 이미지 -->
-
-        <div class="about-image-wrap">
-
-          <img
-            class="about-image"
-            src="./images/image-01.png"
-            alt="이수민 1번째 이미지"
-          >
-
-        </div>
-
-
-
-        <!-- 오른쪽 -->
-
-        <div class="about-right">
-
-          <h3>
-            스포츠를 경험하고,
-            분석하고,
-            기획합니다.
-          </h3>
-
-          <p class="body-copy">
-
-            저는 스포츠를 운동으로만 바라보지 않습니다.
-            운동지도 경험을 통해 사용자를 직접 이해하고,
-            연구활동을 통해 데이터를 분석하며,
-            공모전과 동아리 활동을 통해 제품과 콘텐츠를
-            기획하고 디자인 해왔습니다.
-            이러한 경험을 바탕으로 사람이 원하는 스포츠 제품과
-            경험을 발견하고 기획하는 것에 관심이 있습니다.
-
-          </p>
-
-        </div>
-
-      </div>
-
-    </section>
-
-
-
-    <!-- =====================================================
-         03 EDUCATION
-    ====================================================== -->
-
-    <section id="education" class="reveal">
-
-      <div class="education-top">
-
-        <p class="section-label">
-          Education
+      <div class="about-right">
+        <div class="subtitle">스포츠를 경험하고, 분석하고, 기획합니다.</div>
+        <p class="muted-text">
+          저는 스포츠를 운동으로만 바라보지 않습니다. 운동지도 경험을 통해 사용자를 직접 이해하고, 연구활동을 통해 데이터를 분석하며, 공모전과 동아리 활동을 통해 제품과 콘텐츠를 기획하고 디자인 해왔습니다. 이러한 경험을 바탕으로 사람이 원하는 스포츠 제품과 경험을 발견하고 기획하는 것에 관심이 있습니다.
         </p>
-
-        <h2 class="section-title">
-          education
-        </h2>
-
-        <p class="sub-title">
-          기획자의 기반이 된 배움의 여정
-        </p>
-
       </div>
+    </div>
+  </section>
 
+  <!-- Page 3: Education -->
+  <section id="education">
+    <h2 class="section-title">education</h2>
+    <div class="subtitle">기획자의 기반이 된 배움의 여정</div>
+    <div class="content-box">
+      <h3>2024 - 현재 : 서경대학교 스포츠앤테크놀로지학과 재학중</h3>
+      <ul class="clean-list">
+        <li>스포츠 및 스포츠 산업 관련 전공 학습</li>
+        <li>스포츠 기술 및 데이터 기반 프로젝트 참여</li>
+        <li>스포츠 마케팅 관련 프로젝트 및 스터디</li>
+        <li>공모전 및 팀 프로젝트 참여</li>
+      </ul>
+    </div>
+  </section>
 
-      <div class="education-row">
+  <!-- Page 4: Career Timeline -->
+  <section id="career">
+    <h2 class="section-title">career timeline</h2>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-date">2025.06 - 2025.08</div>
+        <div class="timeline-title">한국체육대학교 대학원 학부연구생 ( 연구참여 )</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-date">2025.09 - 2026.09</div>
+        <div class="timeline-title">필라테스, PT강사 1년</div>
+        <img src="2번째.png" alt="필라테스 PT강사 사진" class="timeline-img">
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-date">2026.08</div>
+        <div class="timeline-title">서경대학교 구독대학 ( 발표 )</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-date">2026.06 - 현재</div>
+        <div class="timeline-title">PRO-SPECS ( 피팅모델 )</div>
+        <img src="3번째.png" alt="프로스펙스 로고" class="timeline-img">
+      </div>
+    </div>
+  </section>
 
-        <div>
-
-          <div class="education-date">
-            2024-현재
-          </div>
-
-          <div class="education-main">
-
-            서경대학교<br>
-            스포츠앤테크놀로지학과<br>
-            재학중
-
-          </div>
-
-        </div>
-
-
-        <ul class="education-list">
-
+  <!-- Page 5: Certificate -->
+  <section id="certificates">
+    <h2 class="section-title">certificate</h2>
+    <div class="cert-grid">
+      <!-- Left Box: Sports Certificates -->
+      <div class="cert-card">
+        <h3>스포츠 관련 자격증</h3>
+        <ul class="clean-list">
+          <li>골프 데이터 분석 자격증</li>
+          <li>스키 심판 3급 ㅣ 대한스키협회</li>
+          <li>스키 레벨 1 ㅣ 대한스키협회</li>
           <li>
-            스포츠 및 스포츠산업 관련 전공 학습
+            필라테스 지도자 자격증
+            <div class="cert-sublist">
+              • 기능해부학 및 운동기능학<br>
+              • 체형 분석 및 움직임 평가<br>
+              • 이학적 평가<br>
+              • 통증 및 재활 관련 운동 지도<br>
+              &nbsp;&nbsp;- 머리·목 / 어깨·등 / 허리·골반 / 무릎·발목 통증 재활기법<br>
+              &nbsp;&nbsp;- 골반교정 기초 및 체형교정 프로그램<br>
+              &nbsp;&nbsp;- 척추측만증·OX다리·거북목·굽은등 관련 체형교정<br>
+              &nbsp;&nbsp;- 고객 유형별 상담 기법<br>
+              &nbsp;&nbsp;- 1:1·2:1·그룹 운동 목적별 프로그램 구성
+            </div>
           </li>
-
-          <li>
-            스포츠 기술 및 데이터 기반 프로젝트 참여
-          </li>
-
-          <li>
-            스포츠 마케팅 관련 프로젝트 및 스터디
-          </li>
-
-          <li>
-            공모전 및 팀 프로젝트 참여
-          </li>
-
+          <li>키네시오 테이핑ㅣKTCS</li>
         </ul>
-
       </div>
 
-    </section>
-
-
-
-    <!-- =====================================================
-         04 CAREER TIMELINE
-    ====================================================== -->
-
-    <section id="career" class="reveal">
-
-      <div class="career-layout">
-
-
-        <!-- 왼쪽 -->
-
-        <div class="career-intro">
-
-          <p class="section-label">
-            Career Timeline
-          </p>
-
-          <h2 class="section-title">
-            career<br>
-            timeline
-          </h2>
-
-        </div>
-
-
-
-        <!-- 오른쪽 타임라인 -->
-
-        <div class="timeline">
-
-
-          <!-- 01 -->
-
-          <article class="timeline-item">
-
-            <span class="timeline-dot"></span>
-
-            <div class="timeline-content">
-
-              <div class="timeline-date">
-                2025.06 - 2025.08
-              </div>
-
-              <h3 class="timeline-title">
-                한국체육대학교 대학원
-              </h3>
-
-              <div class="timeline-role">
-                학부연구생 ( 연구참여 )
-              </div>
-
-            </div>
-
-          </article>
-
-
-
-          <!-- 02 : 2번째 이미지 -->
-
-          <article class="timeline-item">
-
-            <span class="timeline-dot"></span>
-
-            <div class="timeline-content">
-
-              <div class="timeline-date">
-                2025.09 - 2026.09
-              </div>
-
-              <h3 class="timeline-title">
-                필라테스, PT 강사
-              </h3>
-
-              <div class="timeline-role">
-                1년
-              </div>
-
-              <img
-                class="timeline-image"
-                src="./images/image-02.png"
-                alt="이수민 2번째 이미지"
-              >
-
-            </div>
-
-          </article>
-
-
-
-          <!-- 03 -->
-
-          <article class="timeline-item">
-
-            <span class="timeline-dot"></span>
-
-            <div class="timeline-content">
-
-              <div class="timeline-date">
-                2026.08
-              </div>
-
-              <h3 class="timeline-title">
-                서경대학교 구독대학
-              </h3>
-
-              <div class="timeline-role">
-                ( 발표 )
-              </div>
-
-            </div>
-
-          </article>
-
-
-
-          <!-- 04 : 3번째 이미지 -->
-
-          <article class="timeline-item">
-
-            <span class="timeline-dot"></span>
-
-            <div class="timeline-content">
-
-              <div class="timeline-date">
-                2026.06 - 현재
-              </div>
-
-              <h3 class="timeline-title">
-                PRO-SPECS
-              </h3>
-
-              <div class="timeline-role">
-                ( 피팅모델 )
-              </div>
-
-              <img
-                class="timeline-image"
-                src="./images/image-03.png"
-                alt="PRO-SPECS 3번째 이미지"
-              >
-
-            </div>
-
-          </article>
-
-
-        </div>
-
+      <!-- Right Box: Other Certificates -->
+      <div class="cert-card">
+        <h3>기타 자격</h3>
+        <ul class="clean-list">
+          <li>정보기술자격 ITQㅣ한국생산성본부</li>
+          <li>그래픽기술자격 GTQ 2급 ㅣ한국생산성본부</li>
+        </ul>
       </div>
+    </div>
+  </section>
 
-    </section>
+  <!-- Page 6 ~ 10: Projects -->
+  <section id="projects">
+    <h2 class="section-title">projects</h2>
 
-
-
-    <!-- =====================================================
-         05 CERTIFICATE
-    ====================================================== -->
-
-    <section id="certificate" class="reveal">
-
-      <p class="section-label">
-        Certificate
-      </p>
-
-      <h2 class="section-title">
-        certificate
-      </h2>
-
-
-      <div class="certificate-grid">
-
-
-        <!-- 스포츠 관련 -->
-
-        <div class="certificate-box">
-
-          <h3>
-            스포츠 관련 자격증
-          </h3>
-
-
-          <div class="certificate-item">
-
-            <div class="certificate-name">
-              1. 골프 데이터 분석 자격증
-            </div>
-
-          </div>
-
-
-          <div class="certificate-item">
-
-            <div class="certificate-name">
-              2. 스키 심판 3급 ㅣ 대한스키협회
-            </div>
-
-          </div>
-
-
-          <div class="certificate-item">
-
-            <div class="certificate-name">
-              3. 스키 레벨 1 ㅣ 대한스키협회
-            </div>
-
-          </div>
-
-
-          <div class="certificate-item">
-
-            <div class="certificate-name">
-              4. 필라테스 지도자 자격증
-            </div>
-
-
-            <ul class="certificate-detail">
-
-              <li>
-                기능해부학 및 운동기능학
-              </li>
-
-              <li>
-                체형 분석 및 움직임 평가
-              </li>
-
-              <li>
-                이학적 평가
-              </li>
-
-              <li>
-                통증 및 재활 관련 운동 지도
-              </li>
-
-              <li>
-                머리·목 / 어깨·등 / 허리·골반 / 무릎·발목 통증 재활기법
-              </li>
-
-              <li>
-                골반교정 기초 및 체형교정 프로그램
-              </li>
-
-              <li>
-                척추측만증·OX다리·거북목·굽은등 관련 체형교정
-              </li>
-
-              <li>
-                고객 유형별 상담 기법
-              </li>
-
-              <li>
-                1:1·2:1·그룹 운동 목적별 프로그램 구성
-              </li>
-
-            </ul>
-
-          </div>
-
-
-          <div class="certificate-item">
-
-            <div class="certificate-name">
-              1. 키네시오 테이핑ㅣKTCS
-            </div>
-
-          </div>
-
-        </div>
-
-
-
-        <!-- 기타 -->
-
-        <div class="certificate-box">
-
-          <h3>
-            기타 자격증
-          </h3>
-
-
-          <div class="certificate-item">
-
-            <div class="certificate-name">
-              2. 정보기술자격 ITQㅣ한국생산성본부
-            </div>
-
-          </div>
-
-
-          <div class="certificate-item">
-
-            <div class="certificate-name">
-              3. 그래픽기술자격 GTQ 2급 ㅣ한국생산성본부
-            </div>
-
-          </div>
-
-        </div>
-
+    <!-- Project 01 -->
+    <div class="project-card">
+      <div class="project-img-container">
+        <img src="4번째 .png" alt="굿즈 디자인 공모전 이미지">
       </div>
-
-    </section>
-
-
-
-    <!-- =====================================================
-         PROJECT 01
-    ====================================================== -->
-
-    <section
-      id="project01"
-      class="project-section reveal"
-    >
-
-      <div class="project-grid">
-
-
-        <div>
-
-          <div class="project-number">
-            PROJECT 01
-          </div>
-
-          <h2 class="project-title">
-            굿즈 디자인 공모전<br>
-            _ 충청 유니버시아드
-          </h2>
-
-        </div>
-
-
-        <div>
-
-
-          <!-- 4번째 이미지 -->
-
-          <img
-            class="project-image"
-            src="./images/image-04.png"
-            alt="충청 유니버시아드 굿즈 디자인 프로젝트"
-          >
-
-
-          <div class="project-meta">
-
-            <span class="meta-label">
-              담당 역할
-            </span>
-
-            <span class="meta-value">
-              아이디어 기획, 디자인, 팀 협업
-            </span>
-
-          </div>
-
-
-          <div class="project-block">
-
-            <h4>
-              경험한 것
-            </h4>
-
-            <p>
-              스포츠 이벤트와 지역 콘텐츠를 상품으로 연결하는 과정 경험
-            </p>
-
-          </div>
-
-
-          <div class="project-block">
-
-            <h4>
-              개요
-            </h4>
-
-            <ul>
-
-              <li>
-                충청 유니버시아드의 대회 콘셉트와 지역 특색을 반영한 굿즈 기획
-              </li>
-
-              <li>
-                대회의 정체성을 표현할 수 있는 기념 굿즈 아이디어 도출
-              </li>
-
-              <li>
-                굿즈 디자인 방향 설정 및 디자인 참여
-              </li>
-
-              <li>
-                팀원 가 아이디어 공유 및 디자인 방향 협업
-              </li>
-
-            </ul>
-
-          </div>
-
-        </div>
-
+      <div class="project-content">
+        <h3>project 01. 굿즈 디자인 공모전 _ 충청 유니버시아드</h3>
+        <div class="project-role">담당역할: 아이디어 기획, 디자인, 팀 협업</div>
+        <div class="project-exp">경험한 것: 스포츠 이벤트와 지역콘텐츠를 상품으로 연결하는 과정 경험</div>
+        <ul class="clean-list">
+          <li>충청 유니버시아드의 대회 콘셉트와 지역 특색을 반영한 굿즈 기획</li>
+          <li>대회의 정체성을 표현할 수 있는 기념 굿즈 아이디어 도출</li>
+          <li>굿즈 디자인 방향 설정 및 디자인 참여</li>
+          <li>팀원 간 아이디어 공유 및 디자인 방향 협업</li>
+        </ul>
       </div>
+    </div>
 
-    </section>
-
-
-
-    <!-- =====================================================
-         PROJECT 02
-    ====================================================== -->
-
-    <section
-      id="project02"
-      class="project-section reveal"
-    >
-
-      <div class="project-grid">
-
-
-        <div>
-
-          <div class="project-number">
-            PROJECT 02
-          </div>
-
-          <h2 class="project-title">
-            스포츠 제품 기획<br>
-            _ 캡스톤 디자인 공모전
-          </h2>
-
-        </div>
-
-
-        <div>
-
-
-          <!-- 5번째 이미지 -->
-
-          <img
-            class="project-image"
-            src="./images/image-05.png"
-            alt="스포츠 제품 기획 캡스톤 디자인 프로젝트"
-          >
-
-
-          <div class="project-meta">
-
-            <span class="meta-label">
-              담당 역할
-            </span>
-
-            <span class="meta-value">
-              제품 아이디어 기획, 디자인, 결과물 제작
-            </span>
-
-          </div>
-
-
-          <div class="project-block">
-
-            <h4>
-              경험한 것
-            </h4>
-
-            <p>
-              아이디어를 실제 제품의 형태로 구체화 하다.
-            </p>
-
-          </div>
-
-
-          <div class="project-block">
-
-            <h4>
-              개요
-            </h4>
-
-            <ul>
-
-              <li>
-                스포츠 기술 기반 제품 아이디어 도출
-              </li>
-
-              <li>
-                사용자의 필요와 제품 기능을 고려한 제품 기획
-              </li>
-
-              <li>
-                제품 디자인 및 개발 과정 참여
-              </li>
-
-              <li>
-                팀원과 출품을 위한 결과물 제작 및 발표
-              </li>
-
-            </ul>
-
-          </div>
-
-        </div>
-
+    <!-- Project 02 -->
+    <div class="project-card">
+      <div class="project-img-container">
+        <img src="5번째.png" alt="스포츠 제품 기획 이미지">
       </div>
-
-    </section>
-
-
-
-    <!-- =====================================================
-         PROJECT 03
-    ====================================================== -->
-
-    <section
-      id="project03"
-      class="project-section reveal"
-    >
-
-      <div class="project-grid">
-
-
-        <div>
-
-          <div class="project-number">
-            PROJECT 03
-          </div>
-
-          <h2 class="project-title">
-            학과동아리 _ 리핏
-          </h2>
-
-        </div>
-
-
-        <div>
-
-          <div class="project-meta">
-
-            <span class="meta-label">
-              담당 역할
-            </span>
-
-            <span class="meta-value">
-              부회장 및 운영진
-            </span>
-
-          </div>
-
-
-          <div class="project-block">
-
-            <h4>
-              활동
-            </h4>
-
-            <ul>
-
-              <li>
-                활동 포스터 홍보 콘텐츠 디자인
-              </li>
-
-              <li>
-                스포츠 관련 공모전 및 팀 프로젝트 참여
-              </li>
-
-              <li>
-                자격증 취득 및 스포츠 관련 연수, 교육 프로그램 참여
-              </li>
-
-              <li>
-                SPOEX 등 스포츠 산업 관련 행사 견학 및 내용 정리·발표
-              </li>
-
-              <li>
-                교내 체육대회 의무 지원 및 선수 테이핑
-              </li>
-
-              <li>
-                신입부원 대상 기초교육 및 무릎·어깨 등 이학적 검사 실습
-              </li>
-
-              <li>
-                스포츠 손상 및 의학적 주제 자료 조사 및 발표
-              </li>
-
-            </ul>
-
-          </div>
-
-        </div>
-
+      <div class="project-content">
+        <h3>project 02. 스포츠 제품 기획 _ 캡스톤 디자인 공모전</h3>
+        <div class="project-role">담당역할: 제품 아이디어 기획, 디자인, 결과물 제작</div>
+        <div class="project-exp">경험한 것: 아이디어를 실제 제품의 형태로 구체화 하다</div>
+        <ul class="clean-list">
+          <li>스포츠 기술 기반 제품 아이디어 도출</li>
+          <li>사용자의 필요와 제품 기능을 고려한 제품 기획</li>
+          <li>제품 디자인 및 개발 과정 참여</li>
+          <li>팀원과 출품을 위한 결과물 제작 및 발표</li>
+        </ul>
       </div>
+    </div>
 
-    </section>
-
-
-
-    <!-- =====================================================
-         PROJECT 04
-    ====================================================== -->
-
-    <section
-      id="project04"
-      class="project-section reveal"
-    >
-
-      <div class="project-grid">
-
-
-        <div>
-
-          <div class="project-number">
-            PROJECT 04
-          </div>
-
-          <h2 class="project-title">
-            학과동아리 _ 스파크
-          </h2>
-
-        </div>
-
-
-        <div>
-
-          <div class="project-meta">
-
-            <span class="meta-label">
-              담당 역할
-            </span>
-
-            <span class="meta-value">
-              운영진
-            </span>
-
-          </div>
-
-
-          <div class="project-block">
-
-            <h4>
-              활동
-            </h4>
-
-            <ul>
-
-              <li>
-                스포츠 산업 트랜드 분석 및 스터디
-              </li>
-
-              <li>
-                스포츠 마케팅 실무 용어 및 사례 기반 스터디
-              </li>
-
-              <li>
-                스포츠 마케팅 관련 공모전 참여
-              </li>
-
-              <li>
-                스포츠 관련 팀 프로젝트 수행
-              </li>
-
-            </ul>
-
-          </div>
-
-        </div>
-
+    <!-- Project 03 -->
+    <div class="project-card">
+      <div class="project-img-container">
+        <img src="6번째 .jpg" alt="학과동아리 리핏 이미지">
       </div>
-
-    </section>
-
-
-
-    <!-- =====================================================
-         PROJECT 05
-    ====================================================== -->
-
-    <section
-      id="project05"
-      class="project-section reveal"
-    >
-
-      <div class="project-grid">
-
-
-        <div>
-
-          <div class="project-number">
-            PROJECT 05
-          </div>
-
-          <h2 class="project-title">
-            대회안전요언 _ LIV Golf korea
-          </h2>
-
-        </div>
-
-
-        <div>
-
-
-          <div class="project-meta">
-
-            <span class="meta-label">
-              담당 역할
-            </span>
-
-            <span class="meta-value">
-              안전요원
-            </span>
-
-          </div>
-
-
-          <div class="project-block">
-
-            <h4>
-              경험한 것
-            </h4>
-
-            <p>
-              국제 스포츠 대회의 현장운영과 관람객 관리 경험
-            </p>
-
-          </div>
-
-
-          <div class="project-block">
-
-            <h4>
-              개요
-            </h4>
-
-            <ul>
-
-              <li>
-                LIV Golf korea 대회 현장 안전요원 참여
-              </li>
-
-              <li>
-                경기장 및 관람객 동선 관리
-              </li>
-
-              <li>
-                현장 질서 유지
-              </li>
-
-              <li>
-                경기 진행에 따른 관람객 안전관리
-              </li>
-
-              <li>
-                현장 상황에 따른 대응 및 운영 지원
-              </li>
-
-            </ul>
-
-          </div>
-
-        </div>
-
+      <div class="project-content">
+        <h3>project 03. 학과동아리 _ 리핏</h3>
+        <div class="project-role">담당역할: 부회장 및 운영진</div>
+        <ul class="clean-list">
+          <li>활동 포스터 홍보 콘텐츠 디자인</li>
+          <li>스포츠 관련 공모전 및 팀 프로젝트 참여</li>
+          <li>자격증 취득 및 스포츠 관련 연수, 교육 프로그램 참여</li>
+          <li>SPOEX 등 스포츠 산업 관련 행사 견학 및 내용 정리·발표</li>
+          <li>교내 체육대회 의무 지원 및 선수 테이핑</li>
+          <li>신입부원 대상 기초교육 및 무릎·어깨 등 이학적 검사 실습</li>
+          <li>스포츠 손상 및 의학적 주제 자료 조사 및 발표</li>
+        </ul>
       </div>
+    </div>
 
-    </section>
-
-
-
-    <!-- =====================================================
-         MY STORY
-    ====================================================== -->
-
-    <section
-      id="story"
-      class="reveal"
-    >
-
-      <div class="story-inner">
-
-        <p class="section-label">
-          My Story
-        </p>
-
-        <h2 class="section-title">
-          스포츠를 기획하는 사람으로
-        </h2>
-
-
-        <div class="story-text">
-
-
-          <p>
-            처음에는 스포츠를 직접 경험하고 가르치는 것에서 시작했습니다.
-            필라테스 강사와 연구 활동을 통해 사람의 몸과 행동을 관찰하고
-            데이터를 기록하는 경험을 쌓았습니다.
-          </p>
-
-
-          <p>
-            또한 서경대학교 구독대학교에서 예비시니어를 대상으로
-            체력평가를 발표하고 직접 실습을 진행하면서,
-            전문적인 내용을 사람의 눈높이에 맞춰 전달하는 경험도 쌓았습니다.
-          </p>
-
-
-          <p>
-            이후 스포츠 동아리와 공모전 활동을 통해
-            스포츠를 제품과 콘텐츠, 마케팅의 관점에서 바라보기 시작했습니다.
-          </p>
-
-
-          <p>
-            충청 유니버시아드 굿즈 디자인 공모전과 캡스톤디자인을 통해
-            스포츠와 제품을 연결하는 경험을 했고,
-          </p>
-
-
-          <p>
-            SPARK 활동을 통해 스포츠 마케팅과 산업 트렌드를 공부했으며,
-          </p>
-
-
-          <p>
-            프로스펙스 피팅모델 활동을 통해 스포츠 제품이
-            실제 사용자에게 어떻게 경험되는지 직접 경험하고 있습니다.
-          </p>
-
-
-          <p>
-            이러한 경험을 바탕으로 앞으로는
-          </p>
-
-
-          <p class="story-highlight">
-            스포츠를 잘 아는 사람을 넘어,
-            사람들이 원하는 스포츠 제품과 경험을 기획하는 사람
-          </p>
-
-
-          <p>
-            이 되고자 합니다.
-          </p>
-
-
-        </div>
-
+    <!-- Project 04 -->
+    <div class="project-card">
+      <div class="project-img-container">
+        <img src="7번째.jpg" alt="학과동아리 스파크 이미지">
       </div>
-
-    </section>
-
-
-
-    <!-- =====================================================
-         CONTACT
-    ====================================================== -->
-
-    <section
-      id="contact"
-      class="reveal"
-    >
-
-      <p class="section-label">
-        Let's Connect
-      </p>
-
-      <h2 class="section-title">
-        CONTACT
-      </h2>
-
-
-      <div class="contact-grid">
-
-
-        <div>
-
-          <div class="contact-name">
-            이수민
-          </div>
-
-          <div class="contact-info">
-            서경대학교 스포츠앤테크놀로지학과
-          </div>
-
-        </div>
-
-
-        <div class="contact-info">
-
-          <div>
-            관심 분야 스포츠 머천다이징 · 스포츠 마케팅 · 스포츠 제품 기획
-          </div>
-
-          <div>
-            Email leah720823-@naver.com
-          </div>
-
-        </div>
-
-
+      <div class="project-content">
+        <h3>project 04. 학과동아리 _ 스파크</h3>
+        <div class="project-role">담당역할: 운영진</div>
+        <ul class="clean-list">
+          <li>스포츠 산업 트랜드 분석 및 스터디</li>
+          <li>스포츠 마케팅 실무 용어 및 사례 기반 스터디</li>
+          <li>스포츠 마케팅 관련 공모전 참여</li>
+          <li>스포츠 관련 팀 프로젝트 수행</li>
+        </ul>
       </div>
+    </div>
 
-    </section>
+    <!-- Project 05 -->
+    <div class="project-card no-img">
+      <div class="project-content">
+        <h3>project 05. 대회안전요원 _ LIV Golf korea</h3>
+        <div class="project-role">담당역할: 안전요원</div>
+        <div class="project-exp">경험한 것: 국제 스포츠 대회의 현장운영과 관람객 관리 경험</div>
+        <ul class="clean-list">
+          <li>LIV Golf korea 대회 현장 안전요원 참여</li>
+          <li>경기장 및 관람객 동선 관리</li>
+          <li>현장 질서 유지</li>
+          <li>경기 진행에 따른 관람객 안전관리</li>
+          <li>현장 상황에 따른 대응 및 운영 지원</li>
+        </ul>
+      </div>
+    </div>
+  </section>
 
+  <!-- Page 11: My Story -->
+  <section id="story">
+    <h2 class="section-title">My story</h2>
+    <div class="subtitle">스포츠를 기획하는 사람으로</div>
+    <div class="story-content">
+처음에는 스포츠를 직접 경험하고 가르치는 것에서 시작했습니다. 필라테스 강사와 연구 활동을 통해 사람의 몸과 행동을 관찰하고 데이터를 기록하는 경험을 쌓았습니다.
 
-  </main>
+또한 서경대학교 구독대학교에서 예비시니어를 대상으로 체력평가를 발표하고 직접 실습을 진행하면서, 전문적인 내용을 사람의 눈높이에 맞춰 전달하는 경험도 쌓았습니다.
 
+이후 스포츠 동아리와 공모전 활동을 통해 스포츠를 제품과 콘텐츠, 마케팅의 관점에서 바라보기 시작했습니다.
 
+충청 유니버시아드 굿즈 디자인 공모전과 캡스톤디자인을 통해 스포츠와 제품을 연결하는 경험을 했고, SPARK 활동을 통해 스포츠 마케팅과 산업 트렌드를 공부했으며, 프로스펙스 피팅모델 활동을 통해 스포츠 제품이 실제 사용자에게 어떻게 경험되는지 직접 경험하고 있습니다.
 
-  <!-- =====================================================
-       JAVASCRIPT
-  ====================================================== -->
+이러한 경험을 바탕으로 앞으로는 스포츠를 잘 아는 사람을 넘어, 사람들이 원하는 스포츠 제품과 경험을 기획하는 사람이 되고자 합니다.
+    </div>
+  </section>
+
+  <!-- Page 12: Contact -->
+  <section id="contact">
+    <h2 class="section-title">CONTACT</h2>
+    <div class="contact-card">
+      <div class="contact-item">
+        <h4>성명 / 소속</h4>
+        <p>이수민</p>
+        <p style="font-weight: 400; font-size: 1rem; color: var(--text-secondary);">서경대학교 스포츠앤테크놀로지학과</p>
+      </div>
+      <div class="contact-item">
+        <h4>관심 분야</h4>
+        <p>스포츠 머천다이징 · 스포츠 마케팅 · 스포츠 제품 기획</p>
+      </div>
+      <div class="contact-item" style="grid-column: 1 / -1;">
+        <h4>Email</h4>
+        <p><a href="mailto:leah720823-@naver.com" style="color: var(--accent); text-decoration: none;">leah720823-@naver.com</a></p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    &copy; 2026 Lee Sumin. All rights reserved.
+  </footer>
 
   <script>
+    // Smooth scrolling & active navigation offset handler
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href');
+        if (targetId === '#') return;
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+          const headerOffset = 60;
+          const elementPosition = targetElement.getBoundingClientRect().top;
+          const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
 
-    /* ==========================================
-       MOBILE MENU
-    ========================================== */
-
-    const menuButton =
-      document.getElementById("menuButton");
-
-    const navLinks =
-      document.getElementById("navLinks");
-
-
-    menuButton.addEventListener("click", function () {
-
-      navLinks.classList.toggle("open");
-
-    });
-
-
-    document
-      .querySelectorAll(".nav-links a")
-      .forEach(function (link) {
-
-        link.addEventListener("click", function () {
-
-          navLinks.classList.remove("open");
-
-        });
-
-      });
-
-
-
-    /* ==========================================
-       SCROLL REVEAL
-    ========================================== */
-
-    const revealObserver =
-      new IntersectionObserver(
-
-        function (entries) {
-
-          entries.forEach(function (entry) {
-
-            if (entry.isIntersecting) {
-
-              entry.target.classList.add("show");
-
-            }
-
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: "smooth"
           });
-
-        },
-
-        {
-          threshold: 0.12
         }
-
-      );
-
-
-    document
-      .querySelectorAll(".reveal")
-      .forEach(function (element) {
-
-        revealObserver.observe(element);
-
       });
-
-
-
-    /* ==========================================
-       ACTIVE NAVIGATION
-    ========================================== */
-
-    const sections =
-      document.querySelectorAll(
-        "main section[id]"
-      );
-
-    const navItems =
-      document.querySelectorAll(
-        ".nav-links a"
-      );
-
-
-    const sectionObserver =
-      new IntersectionObserver(
-
-        function (entries) {
-
-          entries.forEach(function (entry) {
-
-            if (!entry.isIntersecting) {
-              return;
-            }
-
-
-            navItems.forEach(function (item) {
-
-              item.classList.remove("active");
-
-            });
-
-
-            const current =
-              document.querySelector(
-                '.nav-links a[href="#' +
-                entry.target.id +
-                '"]'
-              );
-
-
-            if (current) {
-
-              current.classList.add("active");
-
-            }
-
-          });
-
-        },
-
-        {
-          rootMargin: "-35% 0px -55% 0px",
-          threshold: 0
-        }
-
-      );
-
-
-    sections.forEach(function (section) {
-
-      sectionObserver.observe(section);
-
     });
-
-
-
-    /* ==========================================
-       IMAGE CHECK
-       
-       이미지가 제대로 연결되지 않았을 경우
-       브라우저 기본 깨진 이미지 아이콘 대신
-       경로를 확인하기 쉽게 표시
-    ========================================== */
-
-    document
-      .querySelectorAll("img")
-      .forEach(function (image) {
-
-        image.addEventListener(
-          "error",
-          function () {
-
-            console.error(
-              "이미지를 찾을 수 없습니다:",
-              image.src
-            );
-
-          }
-        );
-
-      });
-
   </script>
-
 </body>
 </html>
