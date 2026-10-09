@@ -153,22 +153,25 @@
       text-align: center;
     }
 
-    /* 프로필 이미지 페이드 교체 박스 */
+    /* 프로필 이미지 규격 수정 (머리 잘림 방지) */
     .about-img-wrapper {
       width: 100%;
-      max-width: 320px;
-      height: 420px;
-      border-radius: 12px;
+      max-width: 340px;
+      height: 460px;
+      border-radius: 16px;
       overflow: hidden;
       margin: 20px 0;
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-      background-color: #f2f2f7;
+      background-color: #ffffff;
+      border: 1px solid var(--border-color);
     }
 
     .about-img-wrapper img {
       width: 100%;
       height: 100%;
-      object-fit: cover;
+      object-fit: contain; /* 잘리지 않고 전체가 들어오게 설정 */
+      object-position: top center; /* 상단(머리) 정렬 */
+      padding: 8px; /* 안쪽 여백 */
       transition: opacity 0.6s ease-in-out;
     }
 
@@ -207,9 +210,9 @@
       color: var(--text-secondary);
     }
 
-    /* ★ Career Timeline Section 강조 배경 스타일 ★ */
+    /* Career Timeline Section 강조 배경 */
     #career {
-      background-color: #f0f4f8; /* 다른 영역과 차별화되는 강조 배경색 */
+      background-color: #f0f4f8;
       border-radius: 24px;
       margin-top: 40px;
       margin-bottom: 40px;
@@ -441,7 +444,7 @@
       <div class="about-left">
         <h3 class="subtitle">이수민 lee sumin</h3>
         
-        <!-- profile.jpg 와 career1.png 가 교체되는 슬라이더 박스 -->
+        <!-- profile.jpg 와 career1.png 가 교체되는 슬라이더 박스 (규격 수정됨) -->
         <div class="about-img-wrapper">
           <img id="rotatingProfileImg" src="profile.jpg" alt="이수민 프로필 사진">
         </div>
